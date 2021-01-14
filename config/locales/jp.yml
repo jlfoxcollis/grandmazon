@@ -1,0 +1,121 @@
+jp:
+  dashboard_cart: "カート"
+  hello: "Hello world"
+  shop_on_esty: "Estyで買い物"
+  shop: "ショップ"
+  add_to_cart: "カートに追加"
+  my_account: "マイアカウント"
+  my_cart: "私のカート"
+  log_out: "ログアウト"
+  log_in: "ログインする"
+  sign_up: "サインアップ"
+  admin_dashboard: "管理ダッシュボード"
+  merchant_dashboard: "マーチャントダッシュボード"
+  
+  users:
+    shared:
+      links:
+        log_in: "ログインする"
+        sign_up: "サインアップ"
+        forgot_your_password: "パスワードをお忘れですか？"
+        didnt_receive_confirmation_instructions: "確認の指示が届きませんでしたか？"
+        didnt_receive_unlock_instructions: "ロック解除の指示を受け取りませんでしたか？"
+        sign_in_with: "でサインイン"
+    registrations:
+      new:
+        join_esty: "Estyに参加する"
+        characters_minimum: "最小文字数"
+        sign_up: "サインアップ"
+
+  admin:
+    dashboard:
+      admin_nav:
+        dashboard_nav: "ダッシュボード"
+        merchants: "商人"
+        invoices: "請求書"
+        admin_dashboard: "管理ダッシュボード"
+      index:
+        incomplete_invoices: "不完全な請求書"
+        invoice: "請求書"
+        top_five_customers: "トップ5の顧客"
+        purchase: '購入'
+    invoices:
+      index:
+        invoices: "請求書"
+        invoice: "請求書"
+      show: 
+        invoice: "請求書"
+        update_invoice: "請求書を更新する"
+        items_on_this_invoice: "この請求書の項目"
+        item_name: "項目名"
+        quantity: "量"
+        unit_price: "単価"
+        status: "状態"
+    merchants:
+      index:
+        all_esty_merchants: "すべてのEsty商人"
+        enabled_merchants: "有効な加盟店"
+        disabled_merchants: "無効にされた商人"
+        disable: "無効にする"
+        enable: "有効にする"
+        top_five_merchants_by_revenue: "収益別の上位5つの加盟店"
+        top_selling_day_was: "一番売れた日は"
+      show:
+        merchant: "商人"
+        edit_merchants_info: "マーチャントの情報を編集する"
+      edit:
+        info: "情報"
+
+  cart:
+    show:
+      items_in_cart: "カート内のアイテム"
+      checkout: "チェックアウト"
+      item_name: "項目名"
+      quantity: "量"
+      unit_price: "単価"
+      update: "更新"
+      remove_item: "アイテムを削除"
+
+  merchant:
+    dashboard:
+      merchant_nav:
+        merchant_dashboard: "マーチャントダッシュボード"
+        dashboard: "ダッシュボード"
+        my_items: "私のアイテム"
+        my_invoices: "私の請求書"
+      index:
+        items_ready_to_ship: "発送準備完了商品"
+        invoice_id: "請求書ID"
+        top_five_customers: "トップ5の顧客"
+        purchase: "購入"
+    invoices:
+      invoice_status:
+        created_on: "作成日"
+        total_revenue: "総収入"
+        customer: "お客様"
+      index:
+        my_invoices: "私の請求書"
+        invoice: "請求書"
+      show:
+        items_on_this_invoice: "この請求書の項目"
+        item_name: "項目名"
+        quantity: "量"
+        unit_price: "単価"
+        status: "状態"
+        submit: "参加する"
+    items:
+      edit:
+        edit: "編集"
+      index:
+        my_items: "私のアイテム"
+        create_new_item: "新しいアイテムを作成する"
+        enabled_items: "有効なアイテム"
+        disable: "無効にする"
+        disabled_items: "無効なアイテム"
+        enable: "有効にする"
+        top_items: "トップアイテム"
+        top_day_for: "のトップデー"
+      show:
+        description: "説明"
+        current_price: "現在の価格"
+        edit_item: "アイテムの編集"

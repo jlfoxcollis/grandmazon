@@ -1,33 +1,121 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+  dashboard_cart: "Cart"
   hello: "Hello world"
+  shop_on_esty: "Shop On Esty"
+  shop: "Shop"
+  add_to_cart: "Add To Cart"
+  my_account: "My Account"
+  my_cart: "My Cart"
+  log_out: "Log Out"
+  log_in: "Login"
+  sign_up: "Sign Up"
+  admin_dashboard: "Admin Dashboard"
+  merchant_dashboard: "Merchant Dashboard"
+  
+  users:
+    shared:
+      links:
+        log_in: "Log in"
+        sign_up: "Sign up"
+        forgot_your_password: "Forgot your password?"
+        didnt_receive_confirmation_instructions: "Didn't receive confirmation instructions?"
+        didnt_receive_unlock_instructions: "Didn't receive unlock instructions?"
+        sign_in_with: "Sign in with"
+    registrations:
+      new:
+        join_esty: "Join Esty"
+        characters_minimum: "characters minimum"
+        sign_up: "Sign up"
+
+  admin:
+    dashboard:
+      admin_nav:
+        dashboard_nav: "Dashboard"
+        merchants: "Merchants"
+        invoices: "Invoices"
+        admin_dashboard: "Admin Dashboard"
+      index:
+        incomplete_invoices: "Incomplete Invoices"
+        invoice: "Invoice"
+        top_five_customers: "Top 5 Customers"
+        purchase: 'Purchase'
+    invoices:
+      index:
+        invoices: "Invoices"
+        invoice: "Invoice"
+      show: 
+        invoice: "Invoice"
+        update_invoice: "Update Invoice"
+        items_on_this_invoice: "Items on this Invoice"
+        item_name: "Item Name"
+        quantity: "Quantity"
+        unit_price: "Unit Price"
+        status: "Status"
+    merchants:
+      index:
+        all_esty_merchants: "All Esty Merchants"
+        enabled_merchants: "Enabled Merchants"
+        disabled_merchants: "Disabled Merchants"
+        disable: "Disable"
+        enable: "Enable"
+        top_five_merchants_by_revenue: "Top 5 Merchants by Revenue"
+        top_selling_day_was: "Top selling day was"
+      show:
+        merchant: "Merchant"
+        edit_merchants_info: "Edit Merchant's Info"
+      edit:
+        info: "Info"
+
+  cart:
+    show:
+      items_in_cart: "Items in Cart"
+      checkout: "Check Out"
+      item_name: "Item Name"
+      quantity: "Quantity"
+      unit_price: "Unit Price"
+      update: "Update"
+      remove_item: "Remove Item"
+
+  merchant:
+    dashboard:
+      merchant_nav:
+        merchant_dashboard: "Merchant Dashboard"
+        dashboard: "Dashboard"
+        my_items: "My Items"
+        my_invoices: "My Invoices"
+      index:
+        items_ready_to_ship: "Items Ready to Ship"
+        invoice_id: "Invoice ID"
+        top_five_customers: "Top 5 Customers"
+        purchase: "purchase"
+    invoices:
+      invoice_status:
+        created_on: "Created On"
+        total_revenue: "Total Revenue"
+        customer: "Customer"
+      index:
+        my_invoices: "My Invoices"
+        invoice: "Invoice"
+      show:
+        items_on_this_invoice: "Items on this Invoice"
+        item_name: "Item Name"
+        quantity: "Quantity"
+        unit_price: "Unit Price"
+        status: "Status"
+        submit: "Submit"
+    items:
+      edit:
+        edit: "Edit"
+      index:
+        my_items: "My Items"
+        create_new_item: "Create New Item"
+        enabled_items: "Enabled Items"
+        disable: "Disable"
+        disabled_items: "Disabled Items"
+        enable: "Enable"
+        top_items: "Top Items"
+        top_day_for: "Top day for"
+      show:
+        description: "Description"
+        current_price: "Current Price"
+        edit_item: "Edit Item"

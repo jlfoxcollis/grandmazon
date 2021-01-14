@@ -1,0 +1,121 @@
+es:
+  dashboard_cart: "Carrito"
+  hello: "Hola Mundo!"
+  shop_on_esty: "Compra En Esty"
+  shop: "Hacer Compras"
+  add_to_cart: "Agregar Al Carrito"
+  my_account: "Mi Cuenta"
+  my_cart: "Mi Carrito"
+  log_out: "Cerrar Sesión"
+  log_in: "Iniciar Sesión"
+  sign_up: "Regístrate"
+  admin_dashboard: "Panel De Administración"
+  merchant_dashboard: "Tablero De Comerciantes"
+
+  users:
+    shared:
+      links:
+        log_in: "Iniciar sesión"
+        sign_up: "Regístrate"
+        forgot_your_password: "¿Olvidaste tu contraseña?"
+        didnt_receive_confirmation_instructions: "¿No recibió instrucciones de confirmación?"
+        didnt_receive_unlock_instructions: "¿No recibió instrucciones de desbloqueo?"
+        sign_in_with: "Inicia sesión con"
+    registrations:
+      new:
+        join_esty: "Unirse Esty"
+        characters_minimum: "mínimo de caracteres"
+        sign_up: "Regístrate"
+
+  admin:
+    dashboard:
+      admin_nav:
+        dashboard_nav: "Tablero"
+        merchants: "Comerciantes"
+        invoices: "Facturas" 
+        admin_dashboard: "Panel De Administración"
+      index:
+        incomplete_invoices: "Facturas Incompletas"
+        invoice: "Factura"
+        top_five_customers: "Los cinco mejores clientes"
+        purchase: 'Compra'
+    invoices:
+      index:
+        invoices: "Facturas"
+        invoice: "Factura"
+      show: 
+        invoice: "Factura"
+        update_invoice: "Actualizar factura"
+        items_on_this_invoice: "Elementos De Esta Factura"
+        item_name: "Nombre del árticulo"
+        quantity: "Cantidad"
+        unit_price: "Precio unitario"
+        status: "Estado"
+    merchants:
+      index:
+        all_esty_merchants: "Todos los comerciantes de Esty"
+        enabled_merchants: "Comerciantes habilitados"
+        disabled_merchants: "Comerciantes discapacitados"
+        disable: "Inhabilitar"
+        enable: "Habilitar"
+        top_five_merchants_by_revenue: "Los 5 Mejores Comerciantes Por Ingresos"
+        top_selling_day_was: "El día más vendido fue"
+      show:
+        merchant: "Comerciante"
+        edit_merchants_info: "Editar La Información Del Comerciante"
+      edit:
+        info: "Información"
+
+  cart:
+    show:
+      items_in_cart: "Artículos en el carrito"
+      checkout: "Revisa"
+      item_name: "Nombre del árticulo"
+      quantity: "Cantidad"
+      unit_price: "Precio Unitario"
+      update: "Actualizar"
+      remove_item: "Remover El Artículo"
+
+  merchant:
+    dashboard:
+      merchant_nav:
+        merchant_dashboard: "Tablero De Comerciantes"
+        dashboard: "Tablero"
+        my_items: "Mis Cosas"
+        my_invoices: "Mis Facturas"
+      index:
+        items_ready_to_ship: "Artículos Listos Para Enviar"
+        invoice_id: "ID De Factura"
+        top_five_customers: "Los 5 Mejores Clientes"
+        purchase: "compra"
+    invoices:
+      invoice_status:
+        created_on: "Creado En"
+        total_revenue: "Los Ingresos Totales"
+        customer: "Cliente"
+      index:
+        my_invoices: "Mis Facturas"
+        invoice: "Factura"
+      show:
+        items_on_this_invoice: "Elementos De Esta Factura"
+        item_name: "Nombre del árticulo"
+        quantity: "Cantidad"
+        unit_price: "Precio Unitario"
+        status: "Estado"
+        submit: "Enviar"
+    items:
+      edit:
+        edit: "Editar"
+      index:
+        my_items: "Mis Cosas"
+        create_new_item: "Crear Nuevo Artículo"
+        enabled_items: "Elementos Habilitados"
+        disable: "Inhabilitar"
+        disabled_items: "Elementos deshabilitados"
+        enable: "Habilitar"
+        top_items: "Artículos Principales"
+        top_day_for: "Día superior para"
+      show:
+        description: "Descripción"
+        current_price: "Precio actual"
+        edit_item: "Editar Artículo"
