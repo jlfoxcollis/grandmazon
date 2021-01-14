@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # scope "(:lang)", locale: /#{I18n.available_locales.join("|")}/ do
   scope "(:lang)", locale: /#{I18n.available_locales.join("|")}/ do
     root to: "welcome#index"
     devise_for :users, controllers: {:registrations => "users/registrations"}
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :merchants, except: [:destroy]
       resources :merchants_status, only: [:update]
+      resources :invoices_status, only: [:update]
       resources :invoices, only: [:index, :show, :update]
     end
 

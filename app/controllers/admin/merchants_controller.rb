@@ -6,7 +6,7 @@ class Admin::MerchantsController < Admin::BaseController
     @merchants_disabled = Merchant.disabled
     @top_5_merchants = Merchant.top_5_merchants
   end
-  
+
   def edit
   end
 
@@ -15,7 +15,7 @@ class Admin::MerchantsController < Admin::BaseController
 
   def update
     if @merchant.update(merchant_params)
-      flash.notice = "Merchant #{@merchant.user_name} was updated successfully!"
+      flash.notice = "Merchant #{@merchant.name} was updated successfully!"
       redirect_to admin_merchant_path(@merchant)
     else
       flash[:error] = @merchant.errors.full_messages
@@ -31,6 +31,6 @@ class Admin::MerchantsController < Admin::BaseController
   end
 
   def merchant_params
-    params.require(:merchant).permit(:user_name)
+    params.require(:merchant).permit(:name)
   end
 end

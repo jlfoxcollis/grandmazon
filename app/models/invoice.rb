@@ -1,5 +1,5 @@
 class Invoice < ApplicationRecord
-  belongs_to :customer
+  belongs_to :user
   has_many :transactions, dependent: :destroy
   has_many :invoice_items, dependent: :destroy
   has_many :items, through: :invoice_items
@@ -11,14 +11,14 @@ class Invoice < ApplicationRecord
   end
 
   def self.incomplete_invoices
-    # joins(:invoice_items)
-    # .order(created_at: :asc)
-    # .where.not(status: 2)
-    # .where.not("invoice_items.status = ?", 2)
-    # .distinct
+    joins(:invoice_items)
+    .order(created_at: :asc)
+    .where.not(status: 2)
+    .where.not("invoice_items.status = ?", 2)
+    .distinct
   end
 
   def customer_name
-    # customer.name
+    user.name
   end
 end

@@ -14,20 +14,20 @@ class User < ApplicationRecord
 
 
   def self.top_five_customers
-   # joins(:transactions)
-   # .select("customers.*, count('transactions.result') AS transaction_count")
-   # .group(:id)
-   # .where('transactions.result = ?', 1)
-   # .order('transaction_count desc')
-   # .limit(5)
+   joins(:transactions)
+   .select("users.*, count('transactions.result') AS transaction_count")
+   .group(:id)
+   .where('transactions.result = ?', 1)
+   .order('transaction_count desc')
+   .limit(5)
   end
 
   def successful_purchases
-    # transactions.where('result = ?', 1).count
+    transactions.where('result = ?', 1).count
   end
 
   def name
-    # first_name + " " + last_name
+    first_name + " " + last_name
   end
 
          # create_table "users", force: :cascade do |t|

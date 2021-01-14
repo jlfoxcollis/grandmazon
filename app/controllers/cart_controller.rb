@@ -11,7 +11,7 @@ class CartController < ApplicationController
     cart.add_item(item.id)
     quantity = cart.count_of(item.id)
     flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
-    redirect_to "/"
+    redirect_to cart_path(cart)
   end
 
   def destroy

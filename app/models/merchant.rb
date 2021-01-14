@@ -5,9 +5,10 @@ class Merchant < ApplicationRecord
   has_many :invoice_items, through: :items
   has_many :invoices, through: :invoice_items
   has_many :transactions, through: :invoices
-  has_many :customers, through: :invoices
+  has_many :users, through: :invoices
 
   enum status: [:disabled, :enabled]
+
   def ready_to_ship
     invoice_items
       .joins(:item)

@@ -11,6 +11,6 @@ class WelcomeController < ApplicationController
   private
 
   def set_items
-    @items = Item.all
+    @merchants = User.where(merchant: true)
   end
 end
