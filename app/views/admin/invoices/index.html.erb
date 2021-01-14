@@ -1,0 +1,13 @@
+<%= render 'admin/dashboard/admin_nav' %>
+
+<h3 class="has-text-centered"><%= t('.invoices') %></h3>
+
+<section class="section">
+  <section class="section is-size-5 box" id="invoices">
+    <ul>
+      <% @invoices.each do |invoice| %>
+        <li><%= "#{t('.invoice')}" %> #<%= link_to invoice.id, admin_invoice_path(invoice) %></li>
+      <% end %>
+    </ul>
+  </section>
+</section>

@@ -1,0 +1,21 @@
+<%= render 'admin_nav' %>
+
+<section class="section">
+  <div class="columns">
+    <div class="column box" id="incomplete-invoices">
+      <p class="title has-text-centered"><%= t('.incomplete_invoices') %></p>
+      <% @incomplete_invoices.each do |invoice| %>
+        <p class="block is-size-5" id='invoice'><%= link_to "#{t('.invoice')} ##{invoice.id} - #{invoice.date}", admin_invoice_path(invoice) %></p>
+      <% end %>
+    </div>
+
+    <div class=column id="top-customers">
+      <p class="title has-text-centered"><%= "#{t('.top_five_customers')}" %></p>
+      <ol>
+        <% @top_five_customers.each do |customer| %>
+          <li class="block is-size-5" id="customer"><%= customer.name %> - <%= pluralize(customer.successful_purchases, t('.purchase')) %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</section>

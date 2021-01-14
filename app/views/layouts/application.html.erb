@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" class="has-navbar-fixed-top">
+  <head>
+    <title>Esty</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/flatly/bulmaswatch.min.css">
+  </head>
+
+  <body>
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/"><%= image_tag 'logo.png', alt: "Little Esty Shop", id: 'logo' %></a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarData">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="navbar-menu is-size-4" id="navbarData">
+        <div class="navbar-start">
+          <%= link_to t('shop'), "/", class: 'navbar-item' %>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <div class="navbar-link is-size-6">
+              Languages
+            </div>
+            <div class="navbar-dropdown is-boxed">
+              <% I18n.available_locales.each do |lang| %>
+                <%= link_to lang.to_s, { lang: lang }, class: 'navbar-item' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <% if user_signed_in? && current_user.admin? %>
+            <%= link_to t('admin_dashboard'), admin_index_path, class: 'navbar-item' %>
+            <%= link_to t('log_out'), destroy_user_session_path, method: :delete, class: 'navbar-item' %>
+          <% elsif user_signed_in? && current_user.merchant? %>
+            <%= link_to t('merchant_dashboard'), merchant_dashboard_index_path(current_user.merchant), class: 'navbar-item'%>
+            <%= link_to 'Merchant Account', edit_user_registration_path, class: 'navbar-item' %>
+            <%= link_to t('log_out'), destroy_user_session_path, method: :delete, class: 'navbar-item' %>
+          <% elsif user_signed_in? && current_user.customer? %>
+            <%= link_to t('my_account'), edit_user_registration_path, class: 'navbar-item' %>
+            <%= link_to t("my_cart"), cart_path(cart), class: 'navbar-item' %>
+            <%= link_to t('log_out'), destroy_user_session_path, method: :delete, class: 'navbar-item' %>
+          <% else %>
+            <%= link_to t('my_cart'), cart_path(cart), class: 'navbar-item' %>
+            <%= link_to t('sign_up'), new_user_registration_path, class: 'navbar-item' %>
+            <%= link_to t('log_in'), new_user_session_path, class: 'navbar-item' %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <section class="section">
+      <div class="content">
+
+        <% if !flash.empty? %>
+          <article class="message is-info" id="flash-message">
+            <div class="message-body">
+              <% flash.each do |type, messages| %>
+                <% if messages.respond_to?('each') %>
+                  <% messages.each do |message| %>
+                    <p><%= message %></p>
+                  <% end %>
+                <% else %>
+                  <p><%= messages %></p>
+                <% end %>
+              <% end %>
+            </div>
+          </article>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+    </section>
+
+
+      <!-- The footer with Github API consumptions is at /footer.txt to avoid hitting Github rate limits
+             while running the rspec test suite. Copy/paste here to see feature in production. -->
+    <footer>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', async: true %>
+    </footer>
+
+
+  </body>
+</html>

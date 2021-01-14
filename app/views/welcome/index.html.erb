@@ -1,0 +1,22 @@
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h2><%= t("shop_on_esty") %></h2>
+    </div>
+  </div>
+  <div class="level-right is-size-4">
+    <%= link_to "#{t('dashboard_cart')} (#{cart.total_count})", cart_path(cart), class: 'button is-success is-medium' %>
+  </div>
+</nav>
+<hr>
+
+<section class="section">
+  <section class="section is-size-5 box" id="invoices">
+    <% @items.each do |item| %>
+      <section class="section" id="item-<%= item.id %>">
+        <p class="title has-text-centered"><%= link_to "#{item.name} — #{number_to_currency(item.unit_price, precision: 0)}", merchant_item_path(item.merchant_id, item.id) %></p>
+        <p><%= button_to t("add_to_cart"), "/cart/#{item.id}", method: :patch, class: 'button is-large is-primary is-fullwidth' %></p>
+      </section>
+    <% end %>
+  </section>
+</section>

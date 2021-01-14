@@ -1,0 +1,14 @@
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h2><%= t('.admin_dashboard') %></h2>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <%= link_to t('.dashboard_nav'), admin_index_path, class: 'level-item is-size-4' %>
+    <%= link_to t('.merchants'), admin_merchants_path, class: 'level-item is-size-4' %>
+    <%= link_to t('.invoices'), admin_invoices_path, class: 'level-item is-size-4' %>
+  </div>
+</nav>
+<hr>

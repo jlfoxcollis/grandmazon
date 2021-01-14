@@ -1,0 +1,9 @@
+<% @invoices.each do |invoice| %>
+  <%= invoice.id %>
+<% end %>
+
+<% @items.each do |item| %>
+  <%= item.name %>
+  <%= item.quantity %>
+  <%= item.unit_price %>
+<% end %>

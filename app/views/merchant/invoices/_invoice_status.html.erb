@@ -1,0 +1,13 @@
+<section class="section is-size-4" id="invoice-info">
+  <p><%= t('.created_on') %>: <%= @invoice.date %></p>
+  <p><%= t('.total_revenue') %>: <%= number_to_currency(@invoice.total_revenue, precision: 0) %></p>
+
+  <section class="section" id="customer-info">
+    <p class="title"><%= t('.customer') %></p>
+    <section class="section">
+      <p><%= @invoice.customer_name %></p>
+      <p>123 Drury Ln</p>
+      <p>Nowhere, ID 10001</p>
+    </section>
+  </section>
+</section>

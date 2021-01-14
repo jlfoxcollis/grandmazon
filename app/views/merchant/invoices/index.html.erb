@@ -1,0 +1,13 @@
+<%= render 'merchant/dashboard/merchant_nav' %>
+
+<h3 class="has-text-centered"><%= t('.my_invoices') %></h3>
+
+<section class="section">
+  <section class="section is-size-5 box">
+    <ul>
+      <% @merchant.invoices.each do |invoice| %>
+        <li><%= t('.invoice') %> #<%= link_to invoice.id, merchant_invoice_path(@merchant.id, invoice.id) %></li>
+      <% end %>
+    </ul>
+  </section>
+</section>

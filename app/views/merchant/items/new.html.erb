@@ -1,0 +1,5 @@
+<%= render 'merchant/dashboard/merchant_nav' %>
+
+<p class="title has-text-centered">Create New Item</p>
+
+<%= render partial: 'form', locals: {path: merchant_items_path(params[:merchant_id]), method: :post, button_text: "Create Item"} %>

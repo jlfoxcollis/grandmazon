@@ -1,0 +1,45 @@
+<%= render 'admin/dashboard/admin_nav' %>
+
+<p class="title has-text-centered"><%= t('.invoice')%> #<%= @invoice.id %></p>
+
+<section id="update-status">
+  <%= form_with(model: [:admin, @invoice], method: :patch, url: admin_invoice_path(@invoice), local: true) do |f| %>
+  <div class="field has-addons">
+    <div class="control is-expanded">
+      <div class="select is-fullwidth is-large">
+        <%= f.select(:status, enum_collection_for_select(Invoice.statuses), selected: @invoice.status) %>
+      </div>
+    </div>
+    <div class="control">
+      <%= f.submit t('.update_invoice'), class: 'button is-large is-warning' %>
+    </div>
+  <% end %>
+</section>
+
+<%= render 'merchant/invoices/invoice_status' %>
+
+<section class="section">
+  <p class="title"><%= t('.items_on_this_invoice')%>:</p>
+  <table class="table is-striped is-hoverable">
+    <thead>
+      <tr>
+        <th><%= t('.item_name')%></th>
+        <th><%= t('.quantity')%></th>
+        <th><%= t('.unit_price')%></th>
+        <th colspan="2"><%= t('.status')%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @invoice.invoice_items.each do |invitem| %>
+          <div id="status-<%= invitem.id %>">
+          <td><%= invitem.item.name %></td>
+          <td><%= invitem.quantity %></td>
+          <td><%= invitem.unit_price %></td>
+          <td><%= invitem.status.capitalize %></td>
+          </div>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

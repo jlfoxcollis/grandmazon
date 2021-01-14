@@ -1,0 +1,23 @@
+<%= render 'merchant_nav' %>
+<section class="section">
+  <div class="columns">
+    <div class="column box" id="ready-to-ship">
+      <p class="title has-text-centered"><%= t('.items_ready_to_ship') %></p>
+      <ol>
+        <% @merchant.ready_to_ship.each do |item| %>
+          <li class="block is-size-5"><%= item.item_name %> - <%= item.invoice_date.strftime('%A, %b %d %Y') %>
+          <p id="invoice#{item.invoice_id}"><%= t('.invoice_id') %>: <%= link_to item.invoice_id, merchant_invoice_path(@merchant.id, item.invoice_id) %></p></li>
+        <% end %>
+      </ol>
+    </div>
+
+    <div class="column" id="top-5-customers">
+      <p class="title has-text-centered"><%= t('.top_five_customers') %></p>
+      <ol>
+        <% @merchant.top_5.each do |customer| %>
+          <li class="block is-size-5"><%= "#{customer.first_name} #{customer.last_name}" %> - <%= pluralize customer.total_success, t('.purchase') %></li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</section>

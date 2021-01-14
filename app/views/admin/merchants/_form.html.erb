@@ -1,0 +1,15 @@
+<section class="section">
+  <%= form_with(model: merchant, method: method, url: path, local: true) do |f| %>
+  
+    <% merchant.errors.full_messages.each do |error| %>
+      <article class="message is-danger">
+        <div class="message-body"><%= error %></div>
+      </article>
+    <% end %>
+    
+    
+    <p><%= f.label :user_name, class: 'label is-large' %><br />
+      <%= f.text_field :user_name, value: merchant.user_name, class: 'input is-large' %></p>
+    <p><%= f.submit class: 'input button is-large is-primary' %></p>
+  <% end %>
+</section>

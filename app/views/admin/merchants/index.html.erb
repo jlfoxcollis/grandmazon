@@ -1,0 +1,47 @@
+<%= render 'admin/dashboard/admin_nav' %>
+
+<h3 class="has-text-centered"><%= t('.all_esty_merchants') %></h3>
+
+
+<section class="section">
+  <div class="tile is-ancestor">
+    <div class="tile is-6 is-vertical is-parent">
+      <div class="tile is-child box" id="merchants-enabled">
+        <p class="title"><%= t('.enabled_merchants') %></p>
+          <% @merchants_enabled.each do |merchant| %>
+            <p id='merchant-<%= merchant.id %>'>
+            <%= link_to merchant.user_name, admin_merchant_path(merchant), class: 'is-size-5' %>
+            <%= link_to 'Disable', admin_merchants_status_path(merchant, {merchant: {status: "disabled"}}), method: :patch, class: 'button is-pulled-right' %>
+            </p>
+          <% end %>
+        </p>
+      </div>
+
+      <div class="tile is-child box" id="merchants-disabled">
+        <p class="title"><%= t('.disabled_merchants') %></p>
+        <% @merchants_disabled.each do |merchant| %>
+          <p id='merchant-<%= merchant.id %>'>
+            <%= link_to merchant.user_name, admin_merchant_path(merchant), class: 'is-size-5' %>
+            <%= link_to t('.enable'), admin_merchants_status_path(merchant, {merchant: {status: "enabled"}}), method: :patch, class: 'button block is-pulled-right' %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="tile is-6 is-parent">
+      <div class="tile is-child box" id="merchants-revenue">
+        <p class="title"><%= t('.top_five_merchants_by_revenue') %></p>
+        <ol class="content is-medium">
+          <% @top_5_merchants.each do |merchant| %>
+            <li class="block" id="merchant">
+              <div class="tile is-child">
+                <p class="is-size-4"><%= merchant.user_name %>: <%= number_to_currency(merchant.total_revenue, precision: 0) %>
+                <p class="is-size-4" id="best-day"><%= t('.top_selling_day_was') %>: <%= merchant.best_day %></p>
+              </div>
+            </li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

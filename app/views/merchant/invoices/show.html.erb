@@ -1,0 +1,45 @@
+<%= render 'merchant/dashboard/merchant_nav' %>
+
+<p class="title has-text-centered">Invoice: <%= @invoice.id %></p>
+
+<section class="section is-size-4">
+  <p>Status:
+    <% if @invoice.cancelled? %>
+      Cancelled
+    <% elsif @invoice.in_progress? %>
+      In Progress
+    <% else %>
+      Completed
+    <% end %>
+  </p>
+  <%= render 'invoice_status' %>
+</section>
+
+<section class="section">
+  <p class="title"><%= t('.items_on_this_invoice') %>:</p>
+  <table class="table is-striped is-hoverable">
+    <thead>
+      <tr>
+        <th><%= t('.item_name') %></th>
+        <th><%= t('.quantity') %></th>
+        <th><%= t('.unit_price') %></th>
+        <th colspan="2"><%= t('.status') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @invoice.invoice_items.each do |invitem| %>
+          <div id="status-<%= invitem.id %>">
+          <td><%= invitem.item.name %></td>
+          <td><%= invitem.quantity %></td>
+          <td><%= invitem.unit_price %></td>
+          <td><%= form_with model: invitem, method: :patch, url: merchant_invoice_item_path(@invoice.merchant_id, invitem.id), local: true do |f| %>
+              <%= f.select :status, enum_collection_for_select(InvoiceItem.statuses, include_blank = false), selected: invitem.status  %>
+              <%= button_tag t('.submit') %></td>
+          </div>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

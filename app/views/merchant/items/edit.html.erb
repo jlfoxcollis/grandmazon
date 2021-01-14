@@ -1,0 +1,5 @@
+<%= render 'merchant/dashboard/merchant_nav' %>
+
+<p class="title has-text-centered"><%= t('.edit') %> <%= @item.name %></p>
+
+<%= render partial: 'form', locals: {path: merchant_item_path(@item.merchant_id, @item.id), method: :patch, button_text: "Update Item"} %>
