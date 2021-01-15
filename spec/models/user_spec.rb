@@ -51,7 +51,8 @@ RSpec.describe User, type: :model do
   end
 
   describe 'class methods' do
-    before :each do
+    it '::top_five_customers' do
+
       @user = create(:user)
       @merchant = create(:merchant, user: @user)
 
@@ -66,17 +67,15 @@ RSpec.describe User, type: :model do
         create_list(:invoice, 1, user: user)
       end
 
-      it '::top_five_customers' do
-        customer_list = [@user1, @user2, @user3, @user4, @user5, @user6]
+      customer_list = [@user1, @user2, @user3, @user4, @user5, @user6]
 
-        create_list(:transaction, 10, invoice: @user5.invoices.first, result: 0)
+      create_list(:transaction, 10, invoice: @user5.invoices.first, result: 0)
 
-        customer_list.size.times do |i|
-          create_list(:transaction, (i+1), invoice: customer_list[i].invoices.first, result: 1)
-        end
-
-        expect(User.top_five_customers).to eq([@user6, @user5, @user4, @user3, @user2])
+      customer_list.size.times do |i|
+        create_list(:transaction, (i+1), invoice: customer_list[i].invoices.first, result: 1)
       end
+
+      expect(User.top_five_customers).to eq([@user6, @user5, @user4, @user3, @user2])
     end
   end
 end

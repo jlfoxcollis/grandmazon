@@ -9,11 +9,10 @@ describe 'As an admin' do
 
       @merchant = create(:merchant, user: @user1)
 
-      @customer_1 = create(:customer, user: @user2)
 
-      @invoice_1 = create(:invoice, customer: @customer_1, merchant: @merchant)
-      @invoice_2 = create(:invoice, customer: @customer_1, merchant: @merchant)
-      @invoice_3 = create(:invoice, customer: @customer_1, merchant: @merchant)
+      @invoice_1 = create(:invoice, status: 1, user: @user2)
+      @invoice_2 = create(:invoice, user: @user2)
+      @invoice_3 = create(:invoice, user: @user2)
 
       login_as(@admin, scope: :user)
     end
@@ -21,10 +20,8 @@ describe 'As an admin' do
     it 'I see the links to each invoice' do
       visit admin_invoices_path
 
-      within("#invoices") do
+      within("#invoice-#{@invoice_1.id}") do
         expect(page).to have_content(@invoice_1.id)
-        expect(page).to have_content(@invoice_2.id)
-        expect(page).to have_content(@invoice_3.id)
 
         click_on "#{@invoice_1.id}"
         expect(current_path).to eq(admin_invoice_path(@invoice_1))

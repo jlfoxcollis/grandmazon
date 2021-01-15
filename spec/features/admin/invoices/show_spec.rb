@@ -3,15 +3,13 @@ require 'rails_helper'
 describe 'As an admin' do
   describe 'When i visit an admin invoice show apge' do
     before :each do
-      @admin = create(:user)
+      @admin = create(:user, admin: true)
       @user1 = create(:user)
       @user2 = create(:user)
 
       @merchant = create(:merchant, user: @user1)
 
-      @customer_1 = create(:customer, user: @user2)
-
-      @invoice_1 = create(:invoice, customer: @customer_1, merchant: @merchant, status: 0)
+      @invoice_1 = create(:invoice, user: @user2, status: 0)
 
       @item = create(:item, merchant: @merchant)
       @item2 = create(:item, merchant: @merchant)

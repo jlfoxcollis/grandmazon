@@ -15,18 +15,11 @@ describe 'As an Admin' do
 
       @merchant = create(:merchant, user: @user1)
 
-      @customer_1 = create(:customer, user: @user2)
-      @customer_2 = create(:customer, user: @user3)
-      @customer_3 = create(:customer, user: @user4)
-      @customer_4 = create(:customer, user: @user5)
-      @customer_5 = create(:customer, user: @user6)
-      @customer_6 = create(:customer, user: @user7)
-
-      Customer.all.each do |customer|
-        create_list(:invoice, 1, customer: customer, merchant: @merchant)
+      User.all.each do |user|
+        create_list(:invoice, 1, user: user)
       end
 
-      customer_list = [@customer_1, @customer_2, @customer_3, @customer_4, @customer_5, @customer_6]
+      customer_list = [@user2, @user3, @user4, @user5, @user6, @user7]
 
       customer_list.size.times do |i|
         create_list(:transaction, (i+1), invoice: customer_list[i].invoices.first, result: 1)
@@ -48,19 +41,19 @@ describe 'As an Admin' do
 
       within('#top-customers') do
         expect(page).to have_content("Top 5 Customers")
-        expect(all('#customer')[0].text).to eq("#{@customer_6.name} - #{@customer_6.successful_purchases} Purchases")
-        expect(all('#customer')[1].text).to eq("#{@customer_5.name} - #{@customer_5.successful_purchases} Purchases")
-        expect(all('#customer')[2].text).to eq("#{@customer_4.name} - #{@customer_4.successful_purchases} Purchases")
-        expect(all('#customer')[3].text).to eq("#{@customer_3.name} - #{@customer_3.successful_purchases} Purchases")
-        expect(all('#customer')[4].text).to eq("#{@customer_2.name} - #{@customer_2.successful_purchases} Purchases")
+        expect(all('#customer')[0].text).to eq("#{@user7.name} - #{@user7.successful_purchases} Purchases")
+        expect(all('#customer')[1].text).to eq("#{@user6.name} - #{@user6.successful_purchases} Purchases")
+        expect(all('#customer')[2].text).to eq("#{@user5.name} - #{@user5.successful_purchases} Purchases")
+        expect(all('#customer')[3].text).to eq("#{@user4.name} - #{@user4.successful_purchases} Purchases")
+        expect(all('#customer')[4].text).to eq("#{@user3.name} - #{@user3.successful_purchases} Purchases")
       end
     end
 
     it 'I see all incomplete invoices sorted by least recent' do
-      @invoice_1 = create(:invoice, customer: @customer_1, merchant: @merchant, status: 0, created_at: "2006-01-25 09:54:09")
-      @invoice_2 = create(:invoice, customer: @customer_1, merchant: @merchant, status: 1, created_at: "2007-02-25 09:54:09")
-      @invoice_3 = create(:invoice, customer: @customer_1, merchant: @merchant, status: 0, created_at: "2008-03-25 09:54:09")
-      @invoice_4 = create(:invoice, customer: @customer_1, merchant: @merchant, status: 0, created_at: "2009-04-25 09:54:09")
+      @invoice_1 = create(:invoice, user: @user2, status: 0, created_at: "2006-01-25 09:54:09")
+      @invoice_2 = create(:invoice, user: @user2, status: 1, created_at: "2007-02-25 09:54:09")
+      @invoice_3 = create(:invoice, user: @user2, status: 0, created_at: "2008-03-25 09:54:09")
+      @invoice_4 = create(:invoice, user: @user2, status: 0, created_at: "2009-04-25 09:54:09")
 
       @item_1 = create(:item, merchant: @merchant)
       @item_2 = create(:item, merchant: @merchant)
@@ -90,11 +83,13 @@ describe 'As an Admin' do
 
   describe 'cant view admin dashboard as a merchant' do
     it 'cant do it' do
-      @user = create(:user)
-      @merchant = create(:merchant, user: @user)
+      @user = create(:user, admin: false)
       login_as(@user)
       visit admin_index_path
-      expect(current_path).to eq("/")
+      expect(page).to have_content("ACCESS DENIED")
+      @user.update({admin: true})
+      visit admin_index_path
+      expect(current_path).to eq("/admin")
     end
   end
 end

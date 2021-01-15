@@ -14,7 +14,7 @@ RSpec.describe 'Admin Merchants Show' do
     it 'can show a Merchant name' do
       visit admin_merchant_path(@merchant_1)
 
-      expect(page).to have_content(@merchant_1.user_name)
+      expect(page).to have_content(@merchant_1.name)
     end
     it 'can have an update link to change merchant information' do
       visit admin_merchant_path(@merchant_1)

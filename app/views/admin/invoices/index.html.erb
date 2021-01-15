@@ -6,7 +6,7 @@
   <div class="tile is-ancestor">
     <div class="tile is-6 is-vertical is-parent">
       <div class="tile is-child box" id="merchants-enabled">
-        <p class="title"><%= t('.merchant-in-progress-invoices') %></p>
+        <p class="title" id="invoices"><%= t('.merchant-in-progress-invoices') %></p>
           <% @invoices.each do |invoice| %>
             <% if invoice.in_progress? %>
               <p id='invoice-<%= invoice.id %>'>
