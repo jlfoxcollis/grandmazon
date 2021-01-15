@@ -1,5 +1,6 @@
 class Merchant::DiscountsController < Merchant::BaseController
   before_action :set_merchant
+  before_action :set_discount, only: [:show, :edit, :update]
 
   def index
   end
@@ -18,6 +19,14 @@ class Merchant::DiscountsController < Merchant::BaseController
     end
   end
 
+  def show
+  end
+
+  def destroy
+    Discount.delete(params[:id])
+    render :index
+  end
+
   private
 
   def discount_params
@@ -27,4 +36,9 @@ class Merchant::DiscountsController < Merchant::BaseController
   def set_merchant
     @merchant = Merchant.find(params[:merchant_id])
   end
+
+  def set_discount
+    @discount = Discount.find(params[:id])
+  end
+  
 end

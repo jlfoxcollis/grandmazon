@@ -7,19 +7,6 @@ RSpec.describe 'merchant discounts index', type: :feature do
     @discount = create(:discount, merchant: @merchant)
     @discount1 = create(:discount, merchant: @merchant)
 
-    @invoice_1 = create(:invoice, user: @user)
-    @invoice_2 = create(:invoice, user: @user)
-    create(:transaction, result: 1, invoice: @invoice_1)
-    create(:transaction, result: 1, invoice: @invoice_2)
-
-    create_list(:item, 3, merchant: @merchant)
-    2.times do
-      create(:invoice_item, item: Item.first, invoice: @invoice_1)
-      create(:invoice_item, item: Item.second, invoice: @invoice_1)
-      create(:invoice_item, item: Item.third, invoice: @invoice_1)
-      create(:invoice_item, item: Item.first, invoice: @invoice_2)
-    end
-
     login_as(@user, scope: :user)
   end
 
@@ -33,9 +20,10 @@ RSpec.describe 'merchant discounts index', type: :feature do
         expect(page).to have_link("#{@discount.name}")
         expect(page).to have_content("Minimum Quantity: #{@discount.minimum}")
         expect(page).to have_content("Percent off: #{@discount.percentage}")
-      end
 
-      expect(page).to have_link("Create Discount")
+        click_on("Delete Discount")
+      end
+      expect(page).to_not have_content(@discount.name)
     end
   end
 end
