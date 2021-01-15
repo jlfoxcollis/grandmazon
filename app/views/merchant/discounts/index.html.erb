@@ -1,0 +1,34 @@
+<%= render 'discounts_nav' %>
+
+<section class="section">
+  <div class=".container.is-max-widescreen">
+    <h1 class="title has-text-centered"><%= @merchant.name %></h1>
+  </div><br>
+  <div class="columns">
+    <div class="column box> id="available-discounts">
+      <p class="title has-text-centered"><%= t('.available_discounts') %></p>
+        <ol>
+          <% @merchant.discounts.each do |discount| %>
+            <li id="discount-<%= discount.id %>">
+              Discount: <%= link_to discount.name, merchant_discount_path(@merchant, discount) %>,
+              Percent off: <%= discount.percentage %>,
+              Minimum Quantity: <%= discount.minimum %>
+            </li>
+          <% end %>
+        </ol>
+      </p>
+    </div>
+
+    <div class="column" id="items-for-sale">
+      <p class="title has-text-centered"><%= t('.items_for_sale') %></p>
+      <ol>
+        <% @merchant.items.each do |item| %>
+          <li class="block is-size-5">
+            <%= item.name %>
+            <%= item.unit_price %>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+  </div>
+</section>

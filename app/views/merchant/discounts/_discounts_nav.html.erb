@@ -6,8 +6,7 @@
   </div>
 
   <div class="level-right">
-    <%= link_to "Discounts", merchant_discounts_path(@merchant), class: 'level-item is-size-4' %>
-    <%= link_to t('.dashboard'), merchant_dashboard_index_path(@merchant), class: 'level-item is-size-4' %>
+    <%= link_to "Create Discount", new_merchant_discount_path(@merchant), class: 'level-item is-size-4' %>
     <%= link_to t('.my_items'), merchant_items_path(@merchant), class: 'level-item is-size-4' %>
     <%= link_to t('.my_invoices'), merchant_invoices_path(@merchant), class: 'level-item is-size-4' %>
   </div>

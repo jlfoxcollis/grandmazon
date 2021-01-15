@@ -1,0 +1,16 @@
+
+<section class="section">
+<%= form_with model: @discount, method: method, url: path, local: true do |form| %>
+
+  <%= form.label 'name:', class: 'label is-large' %>
+    <%= form.text_field :name, class: 'input is-large' %></br></br>
+
+  <%= form.label 'percentage:', class: 'label is-large' %>
+    <%= form.text_field :percentage, class: 'input is-large' %></br></br>
+
+  <%= form.label 'minimum:', class: 'label is-large' %>
+    <%= form.text_area :minimum, class: 'textarea is-medium' %></br></br></br>
+
+  <%= form.submit button_text, class: 'input button is-large is-primary' %>
+<% end %>
+</section>

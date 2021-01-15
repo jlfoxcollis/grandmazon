@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :welcome, only: [:index]
     resources :cart, only: [:show, :update, :destroy]
     resources :orders, only: [:create, :show]
-    
+
     namespace :admin do
       resources :merchants, except: [:destroy]
       resources :merchants_status, only: [:update]
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
 
     resources :merchants, module: :merchant do
+      resources :discounts
       resources :items
       resources :items_status, controller: "merchant_items_status", only: [:update]
       resources :invoices
