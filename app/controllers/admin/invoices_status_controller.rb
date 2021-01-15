@@ -1,4 +1,4 @@
-class Admin::InvoicesStatusController < BaseController
+class Admin::InvoicesStatusController < Admin::BaseController
   before_action :set_invoice, only: [:update]
 
   def update
