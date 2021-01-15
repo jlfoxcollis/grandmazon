@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'Admin Merchants Index' do
   before :each do
-    @admin = create(:user, role: 1)
+    @admin = create(:user, admin: true)
 
-    @user1 = create(:user, role: 0)
-    @user2 = create(:user, role: 0)
-    @user3 = create(:user, role: 0)
-    @user4 = create(:user, role: 0)
-    @user5 = create(:user, role: 0)
-    @user6 = create(:user, role: 0)
-    @user7 = create(:user, role: 0)
-    @user8 = create(:user, role: 0)
+    @user1 = create(:user)
+    @user2 = create(:user)
+    @user3 = create(:user)
+    @user4 = create(:user)
+    @user5 = create(:user)
+    @user6 = create(:user)
+    @user7 = create(:user)
+    @user8 = create(:user)
 
     @merchant_1 = create(:merchant, status: 1, user: @user7)
     @merchant_2 = create(:merchant, status: 0, user: @user1)

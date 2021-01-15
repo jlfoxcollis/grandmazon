@@ -3,15 +3,15 @@ require 'rails_helper'
 describe 'As an Admin' do
   describe 'When i visit the admin dashboard' do
     before :each do
-	    @admin = create(:user, role: 1)
+	    @admin = create(:user)
 
-      @user1 = create(:user, role: 1)
-      @user2 = create(:user, role: 0)
-      @user3 = create(:user, role: 0)
-      @user4 = create(:user, role: 0)
-      @user5 = create(:user, role: 0)
-      @user6 = create(:user, role: 0)
-      @user7 = create(:user, role: 0)
+      @user1 = create(:user)
+      @user2 = create(:user)
+      @user3 = create(:user)
+      @user4 = create(:user)
+      @user5 = create(:user)
+      @user6 = create(:user)
+      @user7 = create(:user)
 
       @merchant = create(:merchant, user: @user1)
 
@@ -90,7 +90,7 @@ describe 'As an Admin' do
 
   describe 'cant view admin dashboard as a merchant' do
     it 'cant do it' do
-      @user = create(:user, role: 0)
+      @user = create(:user)
       @merchant = create(:merchant, user: @user)
       login_as(@user)
       visit admin_index_path

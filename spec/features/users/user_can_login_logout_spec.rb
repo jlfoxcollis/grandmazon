@@ -5,13 +5,10 @@ describe "As an existing user" do
 		before :each do
 			@user = create(:user, email: "user@example.com", password: "password", password_confirmation: "password", role: 0)
 			@merchant = create(:merchant, user: @user)
-			@customer = create(:customer, user: @user)
 			@user1 = create(:user, email: "user1@example.com", password: "password", password_confirmation: "password", role: 0)
 			@merchant = create(:merchant, user: @user1)
-			@customer = create(:customer, user: @user1)
 			@user2 = create(:user, email: "user2@example.com", password: "password", password_confirmation: "password", role: 1)
 			@merchant = create(:merchant, user: @user2)
-			@customer = create(:customer, user: @user2)
 		end
 
 		it 'login' do

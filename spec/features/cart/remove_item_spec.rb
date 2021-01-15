@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "When a user adds items to their cart" do
   it "displays a message" do
-    @user = create(:user, role: 0)
+    @user = create(:user)
     @merchant = create(:merchant, user: @user, status: 1)
     @item = create(:item, merchant: @merchant)
     @item2 = create(:item, merchant: @merchant)

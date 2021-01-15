@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Cart do
   before :each do
-    @user = create(:user, role: 1)
+    @user = create(:user)
     @merchant = create(:merchant, user: @user)
     @item = create(:item, merchant: @merchant)
     @item2 = create(:item, merchant: @merchant)
-    @user2 = create(:user, role: 0)
+    @user2 = create(:user)
   end
   subject { Cart.new({ "#{@item.id}" => 2, "#{@item2.id}" => 3 }) }
 

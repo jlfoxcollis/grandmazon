@@ -3,9 +3,9 @@ require 'rails_helper'
 describe 'As an admin' do
   describe 'When i visit an admin invoice show apge' do
     before :each do
-      @admin = create(:user, role: 1)
-      @user1 = create(:user, role: 0)
-      @user2 = create(:user, role: 0)
+      @admin = create(:user)
+      @user1 = create(:user)
+      @user2 = create(:user)
 
       @merchant = create(:merchant, user: @user1)
 

@@ -3,8 +3,8 @@ require 'rails_helper'
 describe "As a visitor" do
 	describe "when i visit the root path" do
 		it 'I can see all of the items with enabled merchants' do
-			@user1 = create(:user, role: 0)
-			@user2 = create(:user, role: 0)
+			@user1 = create(:user)
+			@user2 = create(:user)
 
 			@merchant_1 = create(:merchant, user: @user1, status: 1)
 			@merchant_2 = create(:merchant, user: @user2)

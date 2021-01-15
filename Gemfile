@@ -36,7 +36,7 @@ gem "bulma-rails", "~> 0.9.1"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem "factory_bot_rails", require: true
+gem "factory_bot", require: true
 gem "faker", require: true
 gem "devise"
 # Reduces boot times through caching; required in config/boot.rb

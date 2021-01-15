@@ -9,51 +9,45 @@ RSpec.describe 'merchant dashboard index', type: :feature do
       Invoice.destroy_all
       User.destroy_all
 
-      @user = create(:user, role: 0)
+      @user = create(:user0)
       @merchant = create(:merchant, user: @user)
 
-      @user2 = create(:user, role:0)
-      @customer_1 = create(:customer, user: @user2)
-      @invoice_1 = create(:invoice, merchant: @merchant, customer: @customer_1)
-      @invoice_2 = create(:invoice, merchant: @merchant, customer: @customer_1)
+      @user2 = create(:user)
+      @invoice_1 = create(:invoice, user: @user2)
+      @invoice_2 = create(:invoice, user: @user2)
       create(:transaction, result: 1, invoice: @invoice_1)
       create(:transaction, result: 1, invoice: @invoice_2)
 
-      @user3 = create(:user, role:0)
-      @customer_2 = create(:customer, user: @user3)
-      @invoice_3 = create(:invoice, merchant: @merchant, customer: @customer_2)
-      @invoice_4 = create(:invoice, merchant: @merchant, customer: @customer_2)
+      @user3 = create(:user)
+      @invoice_3 = create(:invoice, user: @user3)
+      @invoice_4 = create(:invoice, user: @user3)
       create(:transaction, result: 1, invoice: @invoice_3)
       create(:transaction, result: 1, invoice: @invoice_3)
       create(:transaction, result: 1, invoice: @invoice_3)
       create(:transaction, result: 1, invoice: @invoice_4)
 
-      @user4 = create(:user, role:0)
-      @customer_5 = create(:customer, user: @user4)
-      @invoice_5 = create(:invoice, merchant: @merchant, customer: @customer_5)
-      @invoice_6 = create(:invoice, merchant: @merchant, customer: @customer_5)
+      @user4 = create(:user)
+      @invoice_5 = create(:invoice, user: @user4)
+      @invoice_6 = create(:invoice, user: @user4)
       create(:transaction, result: 1, invoice: @invoice_5)
       create(:transaction, result: 1, invoice: @invoice_5)
       create(:transaction, result: 1, invoice: @invoice_6)
 
-      @user5 = create(:user, role:0)
-      @customer_4 = create(:customer, user: @user5)
-      @invoice_7 = create(:invoice, merchant: @merchant, customer: @customer_4)
+      @user5 = create(:user)
+      @invoice_7 = create(:invoice, user: @user5)
       create(:transaction, result: 1, invoice: @invoice_7)
       create(:transaction, result: 1, invoice: @invoice_7)
       create(:transaction, result: 1, invoice: @invoice_7)
       create(:transaction, result: 1, invoice: @invoice_7)
       create(:transaction, result: 1, invoice: @invoice_7)
 
-      @user6 = create(:user, role:0)
-      @customer_3 = create(:customer, user: @user6)
-      @invoice_8 = create(:invoice, merchant: @merchant, customer: @customer_3)
+      @user6 = create(:user)
+      @invoice_8 = create(:invoice, user: @user6)
       create(:transaction, result: 0, invoice: @invoice_7)
 
-      @user7 = create(:user, role:0)
-      @customer_6 = create(:customer, user: @user7)
-      @invoice_9 = create(:invoice, merchant: @merchant, customer: @customer_6, created_at: '2010-03-27 14:53:59')
-      @invoice_10 = create(:invoice, merchant: @merchant, customer: @customer_6, created_at: '2010-01-27 14:53:59')
+      @user7 = create(:user)
+      @invoice_9 = create(:invoice, user: @user7, created_at: '2010-03-27 14:53:59')
+      @invoice_10 = create(:invoice, user: @user7, created_at: '2010-01-27 14:53:59')
       create(:transaction, result: 1, invoice: @invoice_9)
 
       create_list(:item, 3, merchant: @merchant)
@@ -90,14 +84,14 @@ RSpec.describe 'merchant dashboard index', type: :feature do
     it 'can show top 5 customers of the merchant' do
       visit merchant_dashboard_index_path(@merchant)
 
-      expect(page).to have_content("#{@customer_4.first_name} #{@customer_4.last_name} - #{@merchant.top_5[0].total_success} purchases")
-      expect(page).to have_content("#{@customer_2.first_name} #{@customer_2.last_name} - #{@merchant.top_5[1].total_success} purchases")
-      expect(page).to have_content("#{@customer_5.first_name} #{@customer_5.last_name} - #{@merchant.top_5[2].total_success} purchases")
-      expect(page).to have_content("#{@customer_1.first_name} #{@customer_1.last_name} - #{@merchant.top_5[3].total_success} purchases")
-      expect(page).to have_content("#{@customer_6.first_name} #{@customer_6.last_name} - #{@merchant.top_5[4].total_success} purchase")
+      expect(page).to have_content("#{@user5.first_name} #{@user5.last_name} - #{@merchant.top_5[0].total_success} purchases")
+      expect(page).to have_content("#{@user3.first_name} #{@user3.last_name} - #{@merchant.top_5[1].total_success} purchases")
+      expect(page).to have_content("#{@user4.first_name} #{@customer_5.last_name} - #{@merchant.top_5[2].total_success} purchases")
+      expect(page).to have_content("#{@user2.first_name} #{@user2.last_name} - #{@merchant.top_5[3].total_success} purchases")
+      expect(page).to have_content("#{@user7.first_name} #{@user7.last_name} - #{@merchant.top_5[4].total_success} purchase")
 
-      expect(@customer_4.name).to appear_before(@customer_2.name)
-      expect(@customer_1.name).to appear_before(@customer_6.name)
+      expect(@user5.name).to appear_before(@user3.name)
+      expect(@user2.name).to appear_before(@user7.name)
     end
 
     it 'can show all items not yet shipped, and show items invoice id as a link.' do

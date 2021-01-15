@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'merchants can update items', type: :feature do
   before :each do
-	  @user = create(:user, role: 0)
+	  @user = create(:user)
     @merchant = create(:merchant, user: @user)
 	  login_as(@user, scope: :user)
   end

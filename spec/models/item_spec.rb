@@ -16,12 +16,11 @@ RSpec.describe Item, type: :model do
 
   describe 'instance methods' do
     it '#best day' do
-      @user = create(:user, role: 1)
+      @user = create(:user)
       @merchant_2 = create(:merchant, user: @user)
-      @user1 = create(:user, role: 1)
-      @customer_23 = create(:customer, user: @user1)
-      @invoice_33 = create(:invoice, merchant: @merchant_2, customer: @customer_23)
-      @invoice_43 = create(:invoice, merchant: @merchant_2, customer: @customer_23)
+      @user1 = create(:user)
+      @invoice_33 = create(:invoice, user: @user1)
+      @invoice_43 = create(:invoice, user: @user1)
       create(:transaction, result: 1, invoice: @invoice_33)
       create(:transaction, result: 0, invoice: @invoice_43)
 
@@ -48,8 +47,8 @@ RSpec.describe Item, type: :model do
 
   describe "Class methods" do
     it '::with_enabled_merchants' do
-      @user1 = create(:user, role: 1)
-      @user2 = create(:user, role: 1)
+      @user1 = create(:user)
+      @user2 = create(:user)
 
       @merchant_1 = create(:merchant, user: @user1, status: 1)
       @merchant_2 = create(:merchant, user: @user2, status: 0)
