@@ -11,6 +11,6 @@ class WelcomeController < ApplicationController
   private
 
   def set_items
-    @items = Item.all
+    @merchants = Merchant.where(status: :enabled)
   end
 end

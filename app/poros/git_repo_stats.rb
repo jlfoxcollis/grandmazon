@@ -13,17 +13,9 @@ class GitRepoStats
     service.pulls.count
   end
 
-  def names
-    service.commits.map do |commit|
-      commit[:author][:login]
-    end.uniq
-  end
-
-  def commits_count
-    hash = {}
-    names.each do |name|
-      hash[name] = service.commits_by_author(name).size
-    end
-    hash
-  end
+  # def names
+  #   service.commits.map do |commit|
+  #     [commit[:author], commit[:author][:login]]
+  #   end.uniq
+  # end
 end

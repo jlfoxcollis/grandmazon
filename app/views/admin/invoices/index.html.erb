@@ -3,11 +3,42 @@
 <h3 class="has-text-centered"><%= t('.invoices') %></h3>
 
 <section class="section">
-  <section class="section is-size-5 box" id="invoices">
-    <ul>
-      <% @invoices.each do |invoice| %>
-        <li><%= "#{t('.invoice')}" %> #<%= link_to invoice.id, admin_invoice_path(invoice) %></li>
-      <% end %>
-    </ul>
-  </section>
+  <div class="tile is-ancestor">
+    <div class="tile is-6 is-vertical is-parent">
+      <div class="tile is-child box" id="merchants-enabled">
+        <p class="title" id="invoices"><%= t('.merchant-in-progress-invoices') %></p>
+          <% @invoices.each do |invoice| %>
+            <% if invoice.in_progress? %>
+              <p id='invoice-<%= invoice.id %>'>
+                <%= link_to "Invoice- #{invoice.id}", admin_invoice_path(invoice), class: 'is-size-5' %>:
+                Item count on invoice: <%= invoice.items.count %>
+                <%= form_with model: invoice, method: :patch, url: admin_invoices_status_path(invoice), local: true do |f| %>
+                  <%= f.select :status, enum_collection_for_select(Invoice.statuses, include_blank = false), selected: invoice.status %>
+                  <%= button_tag t('.submit'), class: 'button is-pulled-right' %>
+                <% end %>
+              </p>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+
+    <div class="tile is-6 is-vertical is-parent">
+      <div class="tile is-child box" id="merchants-enabled">
+        <p class="title"><%= t('.merchant-completed-invoices') %></p>
+          <% @invoices.each do |invoice| %>
+            <% if invoice.completed? %>
+              <p id='invoice-<%= invoice.id %>'>
+                <%= link_to "Invoice-#{invoice.id}", admin_invoice_path(invoice), class: 'is-size-5' %>
+                <%= form_with model: invoice, method: :patch, url: admin_invoices_status_path(invoice), local: true do |f| %>
+                  <%= f.select :status, enum_collection_for_select(Invoice.statuses, include_blank = false), selected: invoice.status %>
+                  <%= button_tag t('.submit'), class: 'button is-pulled-right' %>
+                <% end %>
+              </p>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
 </section>

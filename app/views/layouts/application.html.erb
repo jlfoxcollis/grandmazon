@@ -6,10 +6,11 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/flatly/bulmaswatch.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/slate/bulmaswatch.min.css">
   </head>
 
   <body>
+
     <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="/"><%= image_tag 'logo.png', alt: "Little Esty Shop", id: 'logo' %></a>
@@ -39,13 +40,12 @@
         <div class="navbar-end">
           <% if user_signed_in? && current_user.admin? %>
             <%= link_to t('admin_dashboard'), admin_index_path, class: 'navbar-item' %>
-            <%= link_to t('log_out'), destroy_user_session_path, method: :delete, class: 'navbar-item' %>
-          <% elsif user_signed_in? && current_user.merchant? %>
+          <% end %>
+          <% if user_signed_in? && current_user.merchant != nil %>
             <%= link_to t('merchant_dashboard'), merchant_dashboard_index_path(current_user.merchant), class: 'navbar-item'%>
-            <%= link_to 'Merchant Account', edit_user_registration_path, class: 'navbar-item' %>
-            <%= link_to t('log_out'), destroy_user_session_path, method: :delete, class: 'navbar-item' %>
-          <% elsif user_signed_in? && current_user.customer? %>
-            <%= link_to t('my_account'), edit_user_registration_path, class: 'navbar-item' %>
+          <% end %>
+          <% if user_signed_in? %>
+            <%= link_to t('my_account'), user_path(current_user), class: 'navbar-item' %>
             <%= link_to t("my_cart"), cart_path(cart), class: 'navbar-item' %>
             <%= link_to t('log_out'), destroy_user_session_path, method: :delete, class: 'navbar-item' %>
           <% else %>

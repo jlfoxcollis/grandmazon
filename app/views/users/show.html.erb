@@ -1,9 +1,21 @@
-<% @customer.invoices.each do |invoice| %>
-  <%= invoice.id %>
-<% end %>
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <%= link_to t('.edit_account'), edit_user_registration_path(current_user), class: "button" %>
+      <% if user_signed_in? && current_user.merchant == nil %>
+        <h2><%= link_to t('.become_a_merchant'), new_user_merchant_path(current_user), class: "button"  %></h2>
+      <% else %>
+        <h2><%= link_to t('.merchant_page'), user_merchant_path(current_user, current_user.merchant), class: "button" %></h2>
+      <% end %>
+    </div>
+  </div>
 
-<% @customer.invoice_items.each do |invitem| %>
-  <%= invitem.name %>
-  <%= invitem.quantity %>
-  <%= invitem.unit_price %>
-<% end %>
+  <div class="level-right">
+    <% if user_signed_in? %>
+      <%= link_to t('.checkout'), orders_path, method: :post, class: 'button is-medium is-success' %>
+    <% else %>
+      <%= link_to t('.signup'), new_user_session_path, class: 'button is-medium is-success' %>
+    <% end %>
+  </div>
+
+</nav>

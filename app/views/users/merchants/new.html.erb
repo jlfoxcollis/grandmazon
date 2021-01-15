@@ -1,0 +1,21 @@
+<div class="tile is-ancestor">
+  <div class="tile is-4  is-child">
+    <%= form_with(model: @merchant, method: :post, url: user_merchants_path, local: true) do |f| %>
+
+      <% @merchant.errors.full_messages.each do |error| %>
+        <article class="message is-danger">
+          <div class="message-body"><%= error %></div>
+        </article>
+      <% end %>
+
+
+      <p><%= f.label :name, class: 'label is-large' %><br />
+        <%= f.text_field :name, value: @merchant.name, class: 'input is-large' %></p>
+      <p><%= f.submit class: 'input button is-large is-primary' %></p>
+    <% end %>
+
+    <div class="tile is-2 is-child">
+     <!-- This tile will take the rest: 2/3 -->
+    </div>
+  </div>
+</div>

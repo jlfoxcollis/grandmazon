@@ -10,7 +10,6 @@ namespace :load_csv do
                           last_name: row[2],
                           email: "customer#{i += 1}@example.com",
                           password: "password",
-                          user_name: "#{row[1]} #{row[2]}",
                           created_at: row[3],
                           updated_at: row[4]
                         })
@@ -24,7 +23,7 @@ namespace :load_csv do
                           last_name: row[2],
                           email: "merchant#{i += 1}@example.com",
                           password: "password",
-                          user_name: "#{row[1]} #{row[2]}",
+                          name: "#{row[1]} #{row[2]}",
                         })
       Merchant.create!({id: row[0],
                        name: row[1],

@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_210333) do
+ActiveRecord::Schema.define(version: 2021_01_15_154935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "discount_items", force: :cascade do |t|
+    t.bigint "discount_id"
+    t.bigint "item_id"
+    t.index ["discount_id"], name: "index_discount_items_on_discount_id"
+    t.index ["item_id"], name: "index_discount_items_on_item_id"
+  end
+
+  create_table "discounts", force: :cascade do |t|
+    t.string "name"
+    t.integer "minimum", default: 0
+    t.float "percent", default: 1.0
+    t.bigint "merchant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["merchant_id"], name: "index_discounts_on_merchant_id"
+  end
 
   create_table "invoice_items", force: :cascade do |t|
     t.integer "quantity"
@@ -40,27 +57,29 @@ ActiveRecord::Schema.define(version: 2021_01_14_210333) do
     t.string "description"
     t.integer "unit_price"
     t.integer "status", default: 0
-    t.bigint "merchants_id"
+    t.bigint "merchant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["merchants_id"], name: "index_items_on_merchants_id"
+    t.index ["merchant_id"], name: "index_items_on_merchant_id"
   end
 
   create_table "merchants", force: :cascade do |t|
     t.string "name"
     t.integer "status", default: 1
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_merchants_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
     t.bigint "credit_card_number"
     t.date "credit_card_expiration_date"
     t.integer "result"
-    t.bigint "invoices_id"
+    t.bigint "invoice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["invoices_id"], name: "index_transactions_on_invoices_id"
+    t.index ["invoice_id"], name: "index_transactions_on_invoice_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,21 +89,22 @@ ActiveRecord::Schema.define(version: 2021_01_14_210333) do
     t.string "last_name"
     t.boolean "admin", default: false
     t.boolean "merchant", default: false
-    t.bigint "merchants_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["merchants_id"], name: "index_users_on_merchants_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "discount_items", "discounts"
+  add_foreign_key "discount_items", "items"
+  add_foreign_key "discounts", "merchants"
   add_foreign_key "invoice_items", "invoices"
   add_foreign_key "invoice_items", "items"
   add_foreign_key "invoices", "users"
-  add_foreign_key "items", "merchants", column: "merchants_id"
-  add_foreign_key "transactions", "invoices", column: "invoices_id"
-  add_foreign_key "users", "merchants", column: "merchants_id"
+  add_foreign_key "items", "merchants"
+  add_foreign_key "merchants", "users"
+  add_foreign_key "transactions", "invoices"
 end

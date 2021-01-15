@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  # scope "(:lang)", locale: /#{I18n.available_locales.join("|")}/ do
-  scope "(:lang)", locale: /#{I18n.available_locales.join("|")}/ do
+  # scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/, defaults: {locale: "en"} do
     root to: "welcome#index"
     devise_for :users, controllers: {:registrations => "users/registrations"}
-    resources :users, only: [:show]
+    resources :users, only: [:show] do
+      resources :merchants, controller: 'users/merchants', only: [:new, :create, :edit, :show, :update, :destroy ]
+    end
     resources :customers, only: [:show]
     resources :welcome, only: [:index]
     resources :cart, only: [:show, :update, :destroy]
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
     namespace :admin do
       resources :merchants, except: [:destroy]
       resources :merchants_status, only: [:update]
+      resources :invoices_status, only: [:update]
       resources :invoices, only: [:index, :show, :update]
     end
 
@@ -25,4 +27,4 @@ Rails.application.routes.draw do
 
     resources :admin, controller: 'admin/dashboard', only: [:index]
   end
-end
+# end

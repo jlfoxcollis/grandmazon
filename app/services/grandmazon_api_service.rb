@@ -4,7 +4,7 @@ class GrandmazonApiService
   end
 
   def call(arg)
-    response = conn.get("/repos/elyhess/little-esty-shop#{arg}")
+    response = conn.get("/repos/jlfoxcollis/grandmazon#{arg}")
     github = JSON.parse(response.body, :symbolize_names => true)
   end
 

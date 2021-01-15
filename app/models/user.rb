@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates_presence_of :last_name
-  has_one :merchant
+  has_one :merchant, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many :transactions, through: :invoices
   has_many :invoice_items, through: :invoices
@@ -14,20 +14,20 @@ class User < ApplicationRecord
 
 
   def self.top_five_customers
-   # joins(:transactions)
-   # .select("customers.*, count('transactions.result') AS transaction_count")
-   # .group(:id)
-   # .where('transactions.result = ?', 1)
-   # .order('transaction_count desc')
-   # .limit(5)
+   joins(:transactions)
+   .select("users.*, count('transactions.result') AS transaction_count")
+   .group(:id)
+   .where('transactions.result = ?', 1)
+   .order('transaction_count desc')
+   .limit(5)
   end
 
   def successful_purchases
-    # transactions.where('result = ?', 1).count
+    transactions.where('result = ?', 1).count
   end
 
   def name
-    # first_name + " " + last_name
+    first_name + " " + last_name
   end
 
          # create_table "users", force: :cascade do |t|
