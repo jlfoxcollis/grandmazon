@@ -5,7 +5,6 @@ describe "As a signed in user" do
 		before :each do
 			@user = create(:user, email: "user@example.com", password: "password", password_confirmation: "password")
 			@merchant = create(:merchant, user: @user)
-			@customer = create(:customer, user: @user)
 			login_as @user
 		end
 		it 'delete my account info' do

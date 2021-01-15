@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  scope "(:lang)", locale: /#{I18n.available_locales.join("|")}/ do
+  # scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/, defaults: {locale: "en"} do
     root to: "welcome#index"
     devise_for :users, controllers: {:registrations => "users/registrations"}
     resources :users, only: [:show] do
@@ -27,4 +27,4 @@ Rails.application.routes.draw do
 
     resources :admin, controller: 'admin/dashboard', only: [:index]
   end
-end
+# end

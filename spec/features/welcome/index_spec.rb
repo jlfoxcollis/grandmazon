@@ -21,10 +21,9 @@ describe "As a visitor" do
 
 			visit root_path
 
-			expect(page).to have_content(@item1.name)
-			expect(page).to have_content(@item2.name)
-			expect(page).to have_content(@item3.name)
-			expect(page).to have_content(@item4.name)
+			expect(page).to have_content(@merchant_1.name)
+			expect(page).to have_content(@merchant_2.name)
+
 		end
 	end
 end
