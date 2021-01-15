@@ -1,7 +1,7 @@
 class Order
 
-  def initialize(data, customer)
-    @customer = customer
+  def initialize(data, user)
+    @user = user
     @contents = data
     invoice_items
   end
@@ -15,8 +15,7 @@ class Order
   end
 
   def invoice
-      Invoice.create(customer: @customer, status: 1)
-    end.uniq
+      Invoice.create(user: @user, status: 1)
   end
 
   def invoice_items

@@ -4,7 +4,6 @@ RSpec.describe 'merchants invoices index page', type: :feature do
   describe 'as a merchant' do
     before(:each) do
       Merchant.destroy_all
-      Customer.destroy_all
       Transaction.destroy_all
       Invoice.destroy_all
       User.destroy_all
@@ -27,14 +26,14 @@ RSpec.describe 'merchants invoices index page', type: :feature do
       create(:transaction, result: 1, invoice: @invoice_4)
 
       @user3 = create(:user)
-      @invoice_5 = create(:invoice,  user: @user5)
-      @invoice_6 = create(:invoice,  user: @user5)
+      @invoice_5 = create(:invoice,  user: @user3)
+      @invoice_6 = create(:invoice,  user: @user3)
       create(:transaction, result: 1, invoice: @invoice_5)
       create(:transaction, result: 1, invoice: @invoice_5)
       create(:transaction, result: 1, invoice: @invoice_6)
 
       @user4 = create(:user)
-      @invoice_7 = create(:invoice,  user: @user4)
+      @invoice_7 = create(:invoice, status: 0, user: @user4)
       create(:transaction, result: 1, invoice: @invoice_7)
       create(:transaction, result: 1, invoice: @invoice_7)
       create(:transaction, result: 1, invoice: @invoice_7)
@@ -97,12 +96,12 @@ RSpec.describe 'merchants invoices index page', type: :feature do
     end
 
     it 'can enable/disable status of item' do
-      visit merchant_invoice_path(@merchant.id, @invoice_9.id)
-      within("#status-#{@invoice_9.invoice_items.first.id}") do
+      visit merchant_invoice_path(@merchant, @invoice_7)
+      within("#status-#{@invoice_7.invoice_items.first.id}") do
         select("Pending", from: "invoice_item[status]")
         click_button "Submit"
 
-        expect(@invoice_9.invoice_items.first.status).to eq("pending")
+        expect(@invoice_7.invoice_items.first.status).to eq("pending")
       end
     end
 

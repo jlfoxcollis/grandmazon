@@ -41,7 +41,7 @@
             <%= link_to t('admin_dashboard'), admin_index_path, class: 'navbar-item' %>
           <% end %>
           <% if user_signed_in? && current_user.merchant != nil %>
-            <%= link_to t('merchant_dashboard'), merchant_dashboard_index_path(current_user, current_user.merchant), class: 'navbar-item'%>
+            <%= link_to t('merchant_dashboard'), merchant_dashboard_index_path(current_user.merchant), class: 'navbar-item'%>
           <% end %>
           <% if user_signed_in? %>
             <%= link_to t('my_account'), user_path(current_user), class: 'navbar-item' %>

@@ -18,8 +18,8 @@ class Merchant < ApplicationRecord
   end
 
   def top_5
-    transactions
-      .joins(:user)
+    invoices
+      .joins(:transactions, :user)
       .select('users.*, count(transactions) as total_success')
       .where('transactions.result = ?', 1)
       .group('users.id')

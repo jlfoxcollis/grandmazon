@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates_presence_of :last_name
-  has_one :merchant
+  has_one :merchant, dependent: :destroy
   has_many :invoices, dependent: :destroy
   has_many :transactions, through: :invoices
   has_many :invoice_items, through: :invoices

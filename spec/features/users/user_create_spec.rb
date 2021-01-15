@@ -8,7 +8,6 @@ describe "As a visitor" do
 			click_link "Sign Up"
 
 			fill_in "user[email]", with: "test@example.com"
-			fill_in "user[user_name]", with: "test username"
 			fill_in "user[first_name]", with: "first"
 			fill_in "user[last_name]", with: "last"
 			fill_in "user[password]", with: "password"
@@ -26,7 +25,6 @@ describe "As a visitor" do
 			click_link "Sign Up"
 
 			fill_in "user[email]", with: "me@example.com"
-			fill_in "user[user_name]", with: "test username"
 			fill_in "user[first_name]", with: "first"
 			fill_in "user[last_name]", with: "last"
 			fill_in "user[password]", with: "password"

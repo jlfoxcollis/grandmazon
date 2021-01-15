@@ -4,7 +4,6 @@ RSpec.describe 'merchants items index page', type: :feature do
   describe 'as a merchant' do
     before(:each) do
       Merchant.destroy_all
-      Customer.destroy_all
       Transaction.destroy_all
       Invoice.destroy_all
       User.destroy_all
@@ -27,8 +26,8 @@ RSpec.describe 'merchants items index page', type: :feature do
       create(:transaction, result: 1, invoice: @invoice_4)
 
       @user3 = create(:user)
-      @invoice_5 = create(:invoice,  user: @user5)
-      @invoice_6 = create(:invoice,  user: @user5)
+      @invoice_5 = create(:invoice,  user: @user3)
+      @invoice_6 = create(:invoice,  user: @user3)
       create(:transaction, result: 1, invoice: @invoice_5)
       create(:transaction, result: 1, invoice: @invoice_5)
       create(:transaction, result: 1, invoice: @invoice_6)
@@ -42,7 +41,7 @@ RSpec.describe 'merchants items index page', type: :feature do
       create(:transaction, result: 1, invoice: @invoice_7)
 
       @user5 = create(:user)
-      @invoice_8 = create(:invoice,  user: @user3)
+      @invoice_8 = create(:invoice,  user: @user5)
       create(:transaction, result: 0, invoice: @invoice_7)
 
       @user6 = create(:user)

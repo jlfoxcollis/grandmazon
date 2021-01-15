@@ -3,11 +3,11 @@ require "rails_helper"
 describe "As an existing user" do
 	describe "I can" do
 		before :each do
-			@user = create(:user, email: "user@example.com", password: "password", password_confirmation: "password", role: 0)
+			@user = create(:user, email: "user@example.com", password: "password", password_confirmation: "password")
 			@merchant = create(:merchant, user: @user)
-			@user1 = create(:user, email: "user1@example.com", password: "password", password_confirmation: "password", role: 0)
+			@user1 = create(:user, email: "user1@example.com", password: "password", password_confirmation: "password")
 			@merchant = create(:merchant, user: @user1)
-			@user2 = create(:user, email: "user2@example.com", password: "password", password_confirmation: "password", role: 1)
+			@user2 = create(:user, email: "user2@example.com", password: "password", password_confirmation: "password")
 			@merchant = create(:merchant, user: @user2)
 		end
 

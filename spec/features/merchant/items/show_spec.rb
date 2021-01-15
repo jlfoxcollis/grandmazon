@@ -4,7 +4,6 @@ RSpec.describe 'merchants items show page', type: :feature do
   describe 'as a merchant' do
     before(:each) do
       Merchant.destroy_all
-      Customer.destroy_all
       Transaction.destroy_all
       Invoice.destroy_all
       User.destroy_all

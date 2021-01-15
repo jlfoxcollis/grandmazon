@@ -9,9 +9,10 @@ describe "As a signed in user" do
 		end
 		it 'delete my account info' do
 			visit root_path
-			click_link "Merchant Account"
+			click_link "My Account"
+			click_link "Edit Account"
 
-			expect(current_path).to eq(edit_user_registration_path)
+			expect(current_path).to eq(edit_user_registration_path(@user))
 
 			click_button "Cancel my account"
 

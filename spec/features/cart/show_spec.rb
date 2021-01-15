@@ -14,12 +14,20 @@ RSpec.describe "When a user tries to checkout" do
       click_button "Add To Cart"
     end
 
+    visit "/"
+
     within("#item-#{@item2.id}") do
       click_button "Add To Cart"
     end
+
+    visit "/"
+
     within("#item-#{@item.id}") do
       click_button "Add To Cart"
     end
+
+    visit "/"
+    
     click_on "Cart (3)"
 
     within("#item-#{@item.id}") do
