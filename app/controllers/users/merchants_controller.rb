@@ -25,8 +25,8 @@ class Users::MerchantsController < ApplicationController
 
   def update
     if @merchant.update(merchant_params)
-      flash.notice = "Merchant profile was created Successfully!"
-      redirect_to merchant_path(@merchant)
+      flash.notice = "Merchant profile was updated Successfully!"
+      redirect_to user_merchant_path(current_user, @merchant)
     else
       flash[:error] = merchant.errors.full_messages
       set_merchant
