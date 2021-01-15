@@ -10,8 +10,7 @@ class Merchant < ApplicationRecord
   enum status: [:disabled, :enabled]
 
   def ready_to_ship
-    invoice_items
-      .joins(:item)
+    invoices
       .select('items.id, items.name as item_name, invoices.id as invoice_id, invoices.created_at AS invoice_date')
       .where.not('invoice_items.status = ?', 2)
       .order('invoice_date')
@@ -19,10 +18,10 @@ class Merchant < ApplicationRecord
 
   def top_5
     transactions
-      .joins(invoice: :customer)
-      .select('customers.*, count(transactions) as total_success')
+      .joins(:user)
+      .select('users.*, count(transactions) as total_success')
       .where('transactions.result = ?', 1)
-      .group('customers.id')
+      .group('users.id')
       .order('total_success DESC')
       .limit(5)
   end

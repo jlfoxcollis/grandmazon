@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   scope "(:lang)", locale: /#{I18n.available_locales.join("|")}/ do
     root to: "welcome#index"
     devise_for :users, controllers: {:registrations => "users/registrations"}
-    resources :users, only: [:show]
+    resources :users, only: [:show] do
+      resources :merchants, controller: 'users/merchants', only: [:new, :create, :edit, :show, :update, :destroy ]
+    end
     resources :customers, only: [:show]
     resources :welcome, only: [:index]
     resources :cart, only: [:show, :update, :destroy]

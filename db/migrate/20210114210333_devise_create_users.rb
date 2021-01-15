@@ -9,7 +9,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :last_name
       t.boolean :admin, default: false
-      t.boolean :merchant, default: false
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -53,7 +52,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
