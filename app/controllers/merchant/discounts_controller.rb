@@ -9,7 +9,7 @@ class Merchant::DiscountsController < Merchant::BaseController
   end
 
   def create
-    discount = @merchant.discounts.new(discount_params)
+    discount = @merchant.discounts.new(create_params)
     if discount.save
       flash[:notice] = "Discount created Successfully!"
       redirect_to merchant_discounts_path(params[:merchant_id])
@@ -22,6 +22,21 @@ class Merchant::DiscountsController < Merchant::BaseController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @discount.update(update_params)
+      flash.notice = "Discount #{@discount.name} updated successfully!"
+      redirect_to merchant_discount_path(@merchant, @discount)
+    else
+      flash[:error] = @discount.errors.full_messages
+      set_discount
+      render :edit
+    end
+  end
+
+
   def destroy
     Discount.delete(params[:id])
     render :index
@@ -29,8 +44,12 @@ class Merchant::DiscountsController < Merchant::BaseController
 
   private
 
-  def discount_params
+  def create_params
     params.permit(:name, :percentage, :minimum)
+  end
+
+  def update_params
+    params.require(:discount).permit(:name, :percentage, :minimum)
   end
 
   def set_merchant
@@ -40,5 +59,5 @@ class Merchant::DiscountsController < Merchant::BaseController
   def set_discount
     @discount = Discount.find(params[:id])
   end
-  
+
 end
