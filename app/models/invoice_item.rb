@@ -6,5 +6,12 @@ class InvoiceItem < ApplicationRecord
   has_many :transactions, through: :invoice
 
   enum status: [ :pending, :packaged, :shipped ]
-  
+
+  def discount
+    if discount_id != nil
+      merchant.discounts.where('discounts.id = ?', self.discount_id)
+    else
+      false
+    end
+  end
 end

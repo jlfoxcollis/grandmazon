@@ -105,5 +105,24 @@ RSpec.describe 'merchants invoices index page', type: :feature do
       end
     end
 
+    it 'can show if a discount was applied' do
+      item4 = create(:item, unit_price: 20, merchant: @merchant)
+      item5 = create(:item, unit_price: 30, merchant: @merchant)
+      data = {"#{item4.id}" => 5, "#{item5.id}" => 1}
+      discount = create(:discount, merchant: @merchant, minimum: 3, percentage: 50)
+      order = Order.new(data, @user1)
+      order.create_invoice
+      order.invoice_items
+      invoice = Invoice.find(order.invoice.id)
+      visit merchant_invoice_path(@merchant, order.invoice)
+      no_discount = ((item4.unit_price * 5) + (item5.unit_price * 1))
+      discounted = ((item4.unit_price * 5 * 50 / 100.0) + (item5.unit_price * 1))
+
+      expect(no_discount).to_not eq(discounted)
+      expect(order.invoice.total_revenue).to_not eq(no_discount)
+      expect(order.invoice.total_revenue).to eq(discounted)
+
+      expect(page).to have_content("Total Revenue: $#{order.invoice.total_revenue}")
+    end
   end
 end
