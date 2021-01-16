@@ -23,15 +23,18 @@ RSpec.describe Cart do
 
       subject.add_item(@item.id)
       subject.add_item(@item2.id)
-
       expect(subject.contents).to eq({"#{@item.id}" => 3, "#{@item2.id}" =>4})
+
+      subject.remove_item(@item2.id)
+
+      expect(subject.contents).to eq({"#{@item.id}" => 3, "#{@item2.id}" =>3})
     end
   end
 
   describe '#add_item' do
     it 'adds an item to its contents' do
 
-      subject.remove_item(@item.id)
+      subject.delete_item(@item.id)
 
       expect(subject.contents).to eq({"#{@item2.id}" =>3})
     end

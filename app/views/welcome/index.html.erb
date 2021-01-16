@@ -18,7 +18,7 @@
         <% merchant.items.each do |item| %>
           <section class="section" id="item-<%= item.id %>">
             <p class="title has-text-centered"><%= link_to "#{item.name} — #{number_to_currency(item.unit_price, precision: 0)}", merchant_item_path(item.merchant_id, item.id) %></p>
-            <p><%= button_to t("add_to_cart"), "/cart/#{item.id}", method: :patch, class: 'button is-large is-primary is-fullwidth' %></p>
+            <p><%= button_to t("add_to_cart"), "/cart/#{item.id}", params: {add_item: true}, method: :patch, class: 'button is-large is-primary is-fullwidth' %></p>
           </section>
         <% end %>
       </section>

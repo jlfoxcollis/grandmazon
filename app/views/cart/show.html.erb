@@ -33,15 +33,15 @@
           <td id="cart-table">
             <div class="level">
             <div class="level-left">
-              <div class="level-item">
-                <%= button_to "-", "/cart/#{item.id}", params: {remove_item: true}, method: :put, class: "button is-danger" %>
-              </div>
+              <section class="level-item">
+                <%= button_to "-", "/cart/#{item.id}", params: {remove_item: true}, method: :patch, id: "remove-#{item.id}", class: "button is-danger" %>
+              </section>
             </div>
             <%= cart.count_of(item.id) %>
             <div class="level-right">
-              <div class="level-item">
-                <%= button_to "+", "/cart/#{item.id}", params: {add_item: true},method: :patch, class: "button is-light" %>
-              </div>
+              <section class="level-item">
+                <%= button_to "+", "/cart/#{item.id}", params: {add_item: true},method: :patch, id: "add-#{item.id}", class: "button is-light" %>
+              </section>
             </div>
           </td>
           <td id="cart-table"><%= number_to_currency(item.unit_price, precision: 0) %></td>
