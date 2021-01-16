@@ -6,5 +6,5 @@ class InvoiceItem < ApplicationRecord
   has_many :transactions, through: :invoice
 
   enum status: [ :pending, :packaged, :shipped ]
-
+  
 end

@@ -32,7 +32,6 @@ RSpec.describe 'merchant discounts index', type: :feature do
       click_on "Update Discount"
 
       expect(current_path).to eq(merchant_discount_path(@merchant, @discount))
-      save_and_open_page
       expect(page).to have_content("super sale")
     end
 

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show]
     resources :welcome, only: [:index]
     resources :cart, only: [:show, :update, :destroy]
+    put '/cart/:id', to: "cart#remove", as: "minus_item"
     resources :orders, only: [:create, :show]
 
     namespace :admin do
