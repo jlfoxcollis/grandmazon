@@ -67,7 +67,7 @@ Check out the [Project board](https://github.com/jlfoxcollis/grandmazon/projects
 <!-- DATABBASE SCHEMA -->
 ## Database Schema
 
-![Schema](https://github.com/elyhess/little-esty-shop/blob/main/grandmazon-schema.png)
+![Schema](https://github.com/jlfoxcollis/grandmazon/blob/main/grandmazon-schema.png)
 
 <!-- BUILT WITH -->
 ## Built With
