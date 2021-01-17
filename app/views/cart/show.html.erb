@@ -19,20 +19,33 @@
   <table class="table is-striped is-hoverable">
     <thead>
       <tr>
-        <th><%= t('.checkout') %></th>
-        <th><%= t('.item_name') %></th>
-        <th><%= t('.quantity') %></th>
-        <th><%= t('.update') %></th>
+        <th id="cart-table"><%= t('.item_name') %></th>
+        <th id="cart-table"><%= t('.quantity') %></th>
+        <th id="cart-table"><%= t('.price') %></th>
+        <th id="cart-table"><%= t('.remove') %></th>
       </tr>
     </thead>
     <tbody class="has-text-centered">
       <tr>
         <% @item_list.each do |item| %>
           <div id="item-<%= item.id %>">
-          <td><%= item.name %></td>
-          <td><%= cart.count_of(item.id) %></td>
-          <td><%= number_to_currency(item.unit_price, precision: 0) %></td>
-          <td><%= link_to t('.remove_item'), "/cart/#{item.id}", method: :delete, class: 'button is-danger is-light' %></td>
+          <td id="cart-table"><%= item.name %></td>
+          <td id="cart-table">
+            <div class="level">
+            <div class="level-left">
+              <section class="level-item">
+                <%= button_to "-", "/cart/#{item.id}", params: {remove_item: true}, method: :patch, id: "remove-#{item.id}", class: "button is-danger" %>
+              </section>
+            </div>
+            <%= cart.count_of(item.id) %>
+            <div class="level-right">
+              <section class="level-item">
+                <%= button_to "+", "/cart/#{item.id}", params: {add_item: true},method: :patch, id: "add-#{item.id}", class: "button is-light" %>
+              </section>
+            </div>
+          </td>
+          <td id="cart-table"><%= number_to_currency(item.unit_price, precision: 0) %></td>
+          <td id="cart-table"><%= link_to t('.remove_item'), "/cart/#{item.id}", method: :delete, class: 'button is-danger is-light' %></td>
           </div>
       </tr>
       <% end %>

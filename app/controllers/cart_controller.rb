@@ -8,7 +8,11 @@ class CartController < ApplicationController
   def update
     item = Item.find(params[:id])
     session[:cart] = cart.contents
-    cart.add_item(item.id)
+    if params[:add_item]
+      cart.add_item(item.id)
+    elsif params[:remove_item] && cart.count_of(item.id) > 0
+      cart.remove_item(item.id)
+    end
     quantity = cart.count_of(item.id)
     flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
     redirect_to cart_path(cart)
@@ -17,7 +21,7 @@ class CartController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     session[:cart] = cart.contents
-    cart.remove_item(item.id)
+    cart.delete_item(item.id)
     flash[:notice] = "#{item.name} has been removed from your cart."
     redirect_to cart_path(cart)
   end

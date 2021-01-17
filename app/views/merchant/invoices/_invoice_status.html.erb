@@ -1,7 +1,15 @@
 <section class="section is-size-4" id="invoice-info">
   <p><%= t('.created_on') %>: <%= @invoice.date %></p>
   <p><%= t('.total_revenue') %>: <%= number_to_currency(@invoice.total_revenue, precision: 0) %></p>
-
+  <p><%= t('.discounts_applied') %>:
+    <% if @invoice.discounts_applied == false %>
+      "No Discounts Applied"
+    <% else %>
+      <% @invoice.discounts_applied.each do |discount| %>
+        <%=  discount.name  %>
+      <% end %>
+    </p>
+  <% end %>
   <section class="section" id="customer-info">
     <p class="title"><%= t('.customer') %></p>
     <section class="section">

@@ -27,16 +27,14 @@ RSpec.describe "When a user tries to checkout" do
     end
 
     visit "/"
-    
+
     click_on "Cart (3)"
 
     within("#item-#{@item.id}") do
       click_on "Remove Item"
     end
 
-    within(".level-right") do
       click_on 'Check Out'
-    end
 
     expect(page).to have_content("Login")
 
@@ -47,9 +45,8 @@ RSpec.describe "When a user tries to checkout" do
 
     click_on "Cart (1)"
 
-    within(".level-right") do
-      click_on 'Check Out'
-    end
+    click_on 'Check Out'
+
 
     expect(page).to have_content("#{@user1.invoices.first.id}")
     expect(page).to have_content("#{@user1.invoice_items.first.item.name}")

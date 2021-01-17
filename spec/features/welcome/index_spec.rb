@@ -7,7 +7,7 @@ describe "As a visitor" do
 			@user2 = create(:user)
 
 			@merchant_1 = create(:merchant, user: @user1, status: 1)
-			@merchant_2 = create(:merchant, user: @user2)
+			@merchant_2 = create(:merchant, user: @user2, status: 1)
 
 			@item1 = create(:item, name: "A", merchant: @merchant_1)
 			@item2 = create(:item, name: "B", merchant: @merchant_1)

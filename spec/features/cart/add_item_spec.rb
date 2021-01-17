@@ -13,18 +13,14 @@ RSpec.describe "When a user adds items to their cart" do
       click_button "Add To Cart"
     end
 
-    visit "/"
-
-    within("#item-#{@item2.id}") do
-      click_button "Add To Cart"
-    end
-
-    visit "/"
-    
     within("#item-#{@item.id}") do
-      click_button "Add To Cart"
+      click_button "+"
     end
 
-    expect(page).to have_content("You now have 2 copies of #{@item.name} in your cart.")
+    within("#item-#{@item.id}") do
+      click_button "+"
+    end
+
+    expect(page).to have_content("You now have 3 copies of #{@item.name} in your cart.")
   end
 end

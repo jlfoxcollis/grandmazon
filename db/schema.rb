@@ -10,25 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_154935) do
+ActiveRecord::Schema.define(version: 2021_01_16_061301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "discount_items", force: :cascade do |t|
-    t.bigint "discount_id"
-    t.bigint "item_id"
-    t.index ["discount_id"], name: "index_discount_items_on_discount_id"
-    t.index ["item_id"], name: "index_discount_items_on_item_id"
-  end
-
   create_table "discounts", force: :cascade do |t|
     t.string "name"
     t.integer "minimum", default: 0
-    t.float "percent", default: 1.0
     t.bigint "merchant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "percentage", default: 0.0
     t.index ["merchant_id"], name: "index_discounts_on_merchant_id"
   end
 
@@ -40,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_01_15_154935) do
     t.bigint "invoice_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "discount_id"
+    t.integer "discount_percent"
     t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
     t.index ["item_id"], name: "index_invoice_items_on_item_id"
   end
@@ -88,7 +83,6 @@ ActiveRecord::Schema.define(version: 2021_01_15_154935) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "admin", default: false
-    t.boolean "merchant", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -98,8 +92,6 @@ ActiveRecord::Schema.define(version: 2021_01_15_154935) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "discount_items", "discounts"
-  add_foreign_key "discount_items", "items"
   add_foreign_key "discounts", "merchants"
   add_foreign_key "invoice_items", "invoices"
   add_foreign_key "invoice_items", "items"

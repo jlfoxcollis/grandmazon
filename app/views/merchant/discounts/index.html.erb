@@ -1,10 +1,5 @@
-<nav class="level">
-  <div class="level-left">
-    <div class="level-item">
-      <%= link_to t('.update_merchant'), edit_user_merchant_path(current_user, @merchant), class: "button" %>
-    </div>
-  </div>
-</nav>
+<%= render 'discounts_nav' %>
+
 <section class="section">
   <div class=".container.is-max-widescreen">
     <h1 class="title has-text-centered"><%= @merchant.name %></h1>

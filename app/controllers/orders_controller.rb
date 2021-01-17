@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(cart.contents, current_user)
     @order.invoice_items
+    session[:cart].clear
     redirect_to customer_path(current_user.id)
   end
 end
