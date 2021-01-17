@@ -107,7 +107,7 @@ To get a local copy up and running follow these simple steps.
 OR
 
 1. Visit heroku
-   ```
+  ```
   https://tranquil-forest-27711.herokuapp.com/
   ```
 
