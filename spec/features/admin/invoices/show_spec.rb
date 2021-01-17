@@ -54,5 +54,20 @@ describe 'As an admin' do
 
       expect(page).to have_content("Invoice successfully updated")
     end
+
+    it 'can see that discounts were applied' do
+      item4 = create(:item, unit_price: 20, merchant: @merchant)
+      item5 = create(:item, unit_price: 30, merchant: @merchant)
+      data = {"#{item4.id}" => 5, "#{item5.id}" => 1}
+      discount = create(:discount, merchant: @merchant, minimum: 3, percentage: 50)
+      order = Order.new(data, @user1)
+      order.create_invoice
+      order.invoice_items
+      invoice = Invoice.find(order.invoice.id)
+      visit admin_invoice_path(invoice)
+
+      expect(page).to have_content("Total Revenue: $#{invoice.total_revenue}")
+      expect(page).to have_content("Discounts applied: #{discount.name}")
+    end
   end
 end

@@ -5,6 +5,4 @@ class Discount < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :percentage, :minimum, numericality: true
 
-
-
 end

@@ -11,6 +11,15 @@ class Invoice < ApplicationRecord
     invoice_items.sum('invoice_items.unit_price * invoice_items.quantity')
   end
 
+  def discounts_applied
+    invitems = invoice_items.pluck(:discount_id).compact
+    if !invitems.empty?
+      Discount.where(id: invitems)
+    else
+      false
+    end
+   end
+
   def self.incomplete_invoices
     joins(:invoice_items)
     .order(created_at: :asc)

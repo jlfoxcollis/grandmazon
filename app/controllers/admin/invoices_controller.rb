@@ -17,7 +17,7 @@ class Admin::InvoicesController < Admin::BaseController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:quantity, :unit_price, :status)
+    params.require(:invoice).permit(:quantity, :unit_price, :status, :discount_id, :discount_percent)
   end
 
   def set_invoice

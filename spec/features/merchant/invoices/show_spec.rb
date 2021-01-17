@@ -124,5 +124,21 @@ RSpec.describe 'merchants invoices index page', type: :feature do
 
       expect(page).to have_content("Total Revenue: $#{order.invoice.total_revenue}")
     end
+
+    it 'has a link to view any discount that applied' do
+      item4 = create(:item, unit_price: 20, merchant: @merchant)
+      item5 = create(:item, unit_price: 30, merchant: @merchant)
+      data = {"#{item4.id}" => 5, "#{item5.id}" => 1}
+      discount = create(:discount, merchant: @merchant, minimum: 3, percentage: 50)
+      order = Order.new(data, @user1)
+      order.create_invoice
+      order.invoice_items
+      invoice = Invoice.find(order.invoice.id)
+      visit merchant_invoice_path(@merchant, order.invoice)
+
+      expect(page).to have_link("#{discount.name}")
+
+    end
+
   end
 end
