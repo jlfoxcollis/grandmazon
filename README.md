@@ -49,7 +49,7 @@ User stories tracked using [Github projects](https://github.com/jlfoxcollis/gran
 * Practiced MVC concepts, effectively staying within rails conventions
 * Consumed github API and utilized POROS as a way to apply OOP principals 
 * Implemented Cart & Order setup to create a functionable shopping experience
-* Deployed application on [Heroku](https://immense-ocean-82455.herokuapp.com/)
+* Deployed application on [Heroku](https://tranquil-forest-27711.herokuapp.com/)
 
 ### Extensions Complete
 * Session & account models with Devise Gem
