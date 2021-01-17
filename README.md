@@ -22,7 +22,6 @@
 -->
 
 
-![Little Esty Shop](/public/navbar.png)
 <!-- TABLE OF CONTENTS -->
 <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
 <ol>
