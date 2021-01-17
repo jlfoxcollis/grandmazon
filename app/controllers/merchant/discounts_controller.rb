@@ -10,7 +10,10 @@ class Merchant::DiscountsController < Merchant::BaseController
 
   def create
     discount = @merchant.discounts.new(create_params)
-    if discount.save
+    if discount.better_discount?
+      flash[:error] = "A better discount already exists!"
+      redirect_to merchant_discounts_path(params[:merchant_id])
+    elsif discount.save
       flash[:notice] = "Discount created Successfully!"
       redirect_to merchant_discounts_path(params[:merchant_id])
     else
@@ -26,7 +29,10 @@ class Merchant::DiscountsController < Merchant::BaseController
   end
 
   def update
-    if @discount.update(update_params)
+    if @discount.pending_invitems?
+      flash[:error] = "Can't update discount with pending invoices."
+      redirect_to merchant_discount_path(@merchant, @discount)
+    elsif @discount.update(update_params)
       flash.notice = "Discount #{@discount.name} updated successfully!"
       redirect_to merchant_discount_path(@merchant, @discount)
     else

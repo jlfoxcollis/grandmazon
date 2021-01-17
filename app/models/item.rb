@@ -15,6 +15,10 @@ class Item < ApplicationRecord
     discounts.where('discounts.minimum <= ?', quantity).order(percentage: :desc).limit(1)
   end
 
+  def discounts?
+    discounts.count > 0
+  end
+
   def best_day
     invoices.select('invoices.created_at AS created_at, SUM(invoice_items.quantity * invoice_items.unit_price) AS total_revenue')
     .group('invoices.created_at')

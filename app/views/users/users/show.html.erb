@@ -1,0 +1,28 @@
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h2><%= link_to t('.edit_account'), edit_user_registration_path(current_user), class: "level-item is-size-4" %></h2>
+    </div>
+    <div class="level-item">
+      <% if user_signed_in? && current_user.merchant == nil %>
+        <h2><%= link_to t('.become_a_merchant'), new_user_merchant_path(current_user), class: "level-item is-size-4"  %></h2>
+      <% else %>
+        <h2><%= link_to t('.merchant_page'), user_merchant_path(current_user, current_user.merchant), class: "level-item is-size-4" %></h2>
+      <% end %>
+    </div>
+    <div class="level-item">
+      <% if current_user.invoices.count > 0 %>
+        <h2><%= link_to t('.my_orders'), user_orders_path(current_user), class: "level-item is-size-4" %></h2>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <% if user_signed_in? %>
+      <%= link_to t('.checkout'), user_orders_path(current_user), method: :post, class: 'button is-medium is-success' %>
+    <% else %>
+      <%= link_to t('.signup'), new_user_session_path, class: 'button is-medium is-success' %>
+    <% end %>
+  </div>
+
+</nav>

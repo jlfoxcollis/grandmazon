@@ -1,0 +1,34 @@
+
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h2><%= t('.current_orders') %></h2>
+    </div>
+  </div>
+</nav>
+<hr>
+
+<section class="section">
+  <table class="table is-striped is-hoverable">
+    <thead>
+      <tr>
+        <th id="cart-table"><%= t('.item_name') %></th>
+        <th id="cart-table"><%= t('.quantity') %></th>
+        <th id="cart-table"><%= t('.price_per_item') %></th>
+      </tr>
+    </thead>
+    <tbody class="has-text-centered">
+      <tr>
+        <% @order.invoice_items.each do |invitem| %>
+          <div id="invitem-<%= invitem.id %>">
+          <td id="cart-table"><%= invitem.item.name %></td>
+          <td id="cart-table">
+            <%= invitem.quantity %>
+          </td>
+          <td id="cart-table"><%= number_to_currency(invitem.unit_price, precision: 0) %></td>
+          </div>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

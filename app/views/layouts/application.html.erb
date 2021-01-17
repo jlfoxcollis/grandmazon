@@ -46,10 +46,10 @@
           <% end %>
           <% if user_signed_in? %>
             <%= link_to t('my_account'), user_path(current_user), class: 'navbar-item' %>
-            <%= link_to t("my_cart"), cart_path(cart), class: 'navbar-item' %>
+            <%= link_to t("my_cart"), shopping_cart_path(cart), class: 'navbar-item' %>
             <%= link_to t('log_out'), destroy_user_session_path, method: :delete, class: 'navbar-item' %>
           <% else %>
-            <%= link_to t('my_cart'), cart_path(cart), class: 'navbar-item' %>
+            <%= link_to t('my_cart'), shopping_cart_path(cart), class: 'navbar-item' %>
             <%= link_to t('sign_up'), new_user_registration_path, class: 'navbar-item' %>
             <%= link_to t('log_in'), new_user_session_path, class: 'navbar-item' %>
           <% end %>

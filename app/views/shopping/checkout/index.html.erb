@@ -1,0 +1,49 @@
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h2><%= t('.items_in_cart') %></h2>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <% if user_signed_in? %>
+      <%= link_to t('.submit_order'), user_orders_path(current_user), method: :post, class: 'button is-medium is-success' %>
+    <% else %>
+      <%= link_to t('.sign_in'), new_user_session_path, class: 'button is-medium is-success' %>
+    <% end %>
+  </div>
+</nav>
+<hr>
+
+<section class="section">
+  <table class="table is-striped is-hoverable">
+    <thead>
+      <tr>
+        <th id="checkout-table"><%= t('.item_name') %></th>
+        <th id="checkout-table"><%= t('.quantity') %></th>
+        <th id="checkout-table"><%= t('.price_per_item') %></th>
+        <th id="checkout-table"><%= t('.best_discount') %></th>
+        <th id="checkout-table"><%= t('.discounted_price_per_item') %></th>
+
+      </tr>
+    </thead>
+    <tbody class="has-text-centered">
+      <tr>
+        <% @item_list.each do |item| %>
+          <div id="item-<%= item.id %>">
+          <td id="checkout-table"><%= item.name %></td>
+          <td id="checkout-table">
+            <%= cart.count_of(item.id) %>
+          </td>
+          <td id="checkout-table"><%= number_to_currency(item.unit_price, precision: 0) %></td>
+          <td id="checkout-table">
+            <% if item.discounts? %>
+              <%= link_to t("#{item.best_discount(cart.count_of(item.id)).first.name}"), merchant_discount_path(item.merchant, item.best_discount(cart.count_of(item.id))), method: :get, class: 'button is-danger is-light' %></td>
+          <td>  $<%= item.unit_price * (item.best_discount(cart.count_of(item.id)).first.percentage / 100) %></td>
+            <% end %>
+          </div>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
