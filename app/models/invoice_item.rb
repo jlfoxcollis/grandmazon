@@ -9,7 +9,7 @@ class InvoiceItem < ApplicationRecord
 
   def discount
     if discount_id != nil
-      merchant.discounts.where('discounts.id = ?', self.discount_id)
+      merchant.discounts.find(self.discount_id)
     else
       false
     end

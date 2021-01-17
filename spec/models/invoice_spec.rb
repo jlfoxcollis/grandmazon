@@ -29,7 +29,7 @@ RSpec.describe Invoice, type: :model do
       @item = create(:item, merchant: @merchant)
       @invoice_1 = create(:invoice, user: @user1, status: 0, created_at: "2012-01-25 09:54:09")
       2.times do
-        create(:invoice_item, item: @item, unit_price: 25, invoice: @invoice_1, status: 1)
+        create(:invoice_item, item: @item, unit_price: 25, quantity: 1, invoice: @invoice_1, status: 1)
       end
 
 
@@ -42,6 +42,24 @@ RSpec.describe Invoice, type: :model do
       @bob = create(:user, first_name: "Cob", last_name: "Cornwall")
       @invoice_1 = create(:invoice, user: @bob)
       expect(@invoice_1.customer_name).to eq("Cob Cornwall")
+    end
+
+    it 'shows discounts applied' do
+
+      @user = create(:user)
+      @merchant = create(:merchant, user: @user)
+      @user1 = create(:user)
+      @invoice_1 = create(:invoice, user: @user1, status: 0, created_at: "2012-01-25 09:54:09")
+      @invoice_2 = create(:invoice, user: @user1, status: 0)
+      item1 = create(:item, unit_price: 20, merchant: @merchant)
+      item2 = create(:item, unit_price: 30, merchant: @merchant)
+      discount = create(:discount, merchant: @merchant, minimum: 3, percentage: 50)
+      invoice = Invoice.create(user: @user, status: 1)
+      invoice_item1 = InvoiceItem.create(invoice: invoice, quantity: 1, item: item1, unit_price: item1.unit_price)
+      invoice_item2 = InvoiceItem.create(invoice: invoice, discount_id: discount.id, quantity: 5, item: item1, unit_price: item1.unit_price)
+
+      expect(invoice.discounts_applied).to eq([discount])
+      expect(@invoice_2.discounts_applied).to eq(false)
     end
   end
 

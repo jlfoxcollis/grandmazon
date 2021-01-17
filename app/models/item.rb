@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   enum status: [ :disabled, :enabled ]
 
   def best_discount(quantity)
-    discounts.where('discounts.minimum <= ?', quantity).order(percentage: :desc).limit(1)
+    discounts.where('discounts.minimum <= ?', quantity).order(percentage: :desc).limit(1).first
   end
 
   def discounts?
@@ -26,7 +26,7 @@ class Item < ApplicationRecord
     .date
   end
 
-  # def self.with_enabled_merchants
-  #   joins(:merchant).where("merchants.status = ?", 1)
-  # end
+  def self.with_enabled_merchants
+    joins(:merchant).where("merchants.status = ?", 1)
+  end
 end
