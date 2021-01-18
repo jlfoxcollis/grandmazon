@@ -39,7 +39,7 @@
               <%= button_tag t('.submit') %>
             </td>
           <td><% if invitem.discount != false %>
-            <%= link_to invitem.discount.first.name, merchant_discount_path(@merchant, invitem.discount.first) %>
+            <%= link_to invitem.discount.name, merchant_discount_path(@merchant, invitem.discount) %>
           <% end %></td>
           </div>
         <% end %>

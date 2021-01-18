@@ -3,7 +3,7 @@ class Discount < ApplicationRecord
   has_many :items, through: :merchant
   has_many :invoice_items, through: :items
   validates_presence_of :name
-  validates :percentage, numericality: { only_integer: true }, presence: true
+  validates :percentage, numericality: {less_than_or_equal_to: 100}, presence: true
   validates :minimum, numericality: { only_integer: true }, presence: true
 
   before_save :better_discount?

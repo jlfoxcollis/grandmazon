@@ -25,8 +25,4 @@ class Item < ApplicationRecord
     .max
     .date
   end
-
-  def self.with_enabled_merchants
-    joins(:merchant).where("merchants.status = ?", 1)
-  end
 end

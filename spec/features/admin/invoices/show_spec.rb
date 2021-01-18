@@ -67,7 +67,7 @@ describe 'As an admin' do
       visit admin_invoice_path(invoice)
 
       expect(page).to have_content("Total Revenue: $#{invoice.total_revenue}")
-      expect(page).to have_content("Discounts applied: #{discount.name}")
+      expect(page).to have_content("Discounts Applied: #{discount.name}")
     end
   end
 end

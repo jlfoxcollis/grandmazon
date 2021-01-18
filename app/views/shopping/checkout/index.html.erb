@@ -1,7 +1,17 @@
 <nav class="level">
   <div class="level-left">
     <div class="level-item">
-      <h2><%= t('.items_in_cart') %></h2>
+      <h2>Grand Total:
+        <% grand_total = 0 %>
+        <% @item_list.each do |item|  %>
+          <%if item.discounts? && item.best_discount(cart.count_of(item.id)) != nil %>
+            <% grand_total += item.unit_price * ((100 - item.best_discount(cart.count_of(item.id)).percentage) / 100) * cart.count_of(item.id) %>
+          <% else %>
+            <% grand_total += item.unit_price * cart.count_of(item.id) %>
+          <% end %>
+        <% end %>
+        $<%= grand_total %></h2>
+      </div>
     </div>
   </div>
 
@@ -37,9 +47,9 @@
           </td>
           <td id="checkout-table"><%= number_to_currency(item.unit_price, precision: 0) %></td>
           <td id="checkout-table">
-            <% if item.discounts? %>
-              <%= link_to t("#{item.best_discount(cart.count_of(item.id)).first.name}"), merchant_discount_path(item.merchant, item.best_discount(cart.count_of(item.id))), method: :get, class: 'button is-danger is-light' %></td>
-          <td>  $<%= item.unit_price * (item.best_discount(cart.count_of(item.id)).first.percentage / 100) %></td>
+            <% if item.discounts? && item.best_discount(cart.count_of(item.id)) != nil %>
+              <%= link_to t("#{item.best_discount(cart.count_of(item.id)).name}"), merchant_discount_path(item.merchant, item.best_discount(cart.count_of(item.id))), method: :get, class: 'button is-danger is-light' %></td>
+          <td>  $<%= item.unit_price * ((100 - item.best_discount(cart.count_of(item.id)).percentage) / 100) %></td>
             <% end %>
           </div>
       </tr>

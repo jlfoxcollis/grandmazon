@@ -17,7 +17,7 @@ class Merchant::DiscountsController < Merchant::BaseController
       flash[:notice] = "Discount created Successfully!"
       redirect_to merchant_discounts_path(params[:merchant_id])
     else
-      discount.errors.full_messages
+      flash.notice = discount.errors.full_messages
       render :new
     end
   end

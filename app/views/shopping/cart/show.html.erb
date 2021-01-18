@@ -7,9 +7,9 @@
 
   <div class="level-right">
     <% if user_signed_in? %>
-      <%= link_to t('.checkout'), shopping_checkout_index_path, method: :get, class: 'button is-medium is-success' %>
+      <%= link_to t('.check_out'), shopping_checkout_index_path, method: :get, class: 'button is-medium is-success' %>
     <% else %>
-      <%= link_to t('.checkout'), new_user_session_path, class: 'button is-medium is-success' %>
+      <%= link_to t('.check_out'), new_user_session_path, class: 'button is-medium is-success' %>
     <% end %>
   </div>
 </nav>
@@ -76,7 +76,7 @@
             </div>
           </td>
           <td id="cart-table"><%= number_to_currency(item.unit_price, precision: 0) %></td>
-          <td id="cart-table"><%= link_to t('.remove_item'), "/cart/#{item.id}", method: :delete, class: 'button is-danger is-light' %></td>
+          <td id="cart-table"><%= link_to t('.remove_item'), shopping_cart_path(item.id), method: :delete, class: 'button is-danger is-light' %></td>
           </div>
       </tr>
       <% end %>
