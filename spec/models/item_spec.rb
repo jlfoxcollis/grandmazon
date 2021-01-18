@@ -43,23 +43,40 @@ RSpec.describe Item, type: :model do
       expected = [@merchant_2.items.second, @merchant_2.items.third, @merchant_2.items.first, @merchant_2.items.fourth, @merchant_2.items.fifth]
       expect(@merchant_2.items.fourth.best_day).to eq(@invoice_33.date)
     end
-  end
 
-  # describe "Class methods" do
-  #   it '::with_enabled_merchants' do
-  #     @user1 = create(:user)
-  #     @user2 = create(:user)
-  #
-  #     @merchant_1 = create(:merchant, user: @user1, status: 1)
-  #     @merchant_2 = create(:merchant, user: @user2, status: 0)
-  #
-  #     create_list(:item, 3, name: "xxx", merchant: @merchant_1)
-  #     create_list(:item, 6, merchant: @merchant_2)
-  #
-  #     expect(Item.with_enabled_merchants.count).to eq(3)
-  #     expect(Item.with_enabled_merchants.first.name).to eq("xxx")
-  #     expect(Item.with_enabled_merchants.second.name).to eq("xxx")
-  #     expect(Item.with_enabled_merchants.third.name).to eq("xxx")
-  #   end
-  # end
+    it 'might have discounts' do
+      @user = create(:user)
+      @merchant = create(:merchant, user: @user)
+      @user2 = create(:user)
+      @merchant1 = create(:merchant, user: @user2)
+      @user1 = create(:user)
+      @invoice_1 = create(:invoice, user: @user1, status: 0, created_at: "2012-01-25 09:54:09")
+      item1 = create(:item, unit_price: 20, merchant: @merchant)
+      item2 = create(:item, unit_price: 30, merchant: @merchant1)
+      discount = create(:discount, merchant: @merchant, minimum: 3, percentage: 50)
+      invoice = Invoice.create(user: @user, status: 1)
+      invoice_item1 = InvoiceItem.create(invoice: invoice, quantity: 1, item: item1, unit_price: item1.unit_price)
+      invoice_item2 = InvoiceItem.create(invoice: invoice, discount_id: discount.id, quantity: 5, item: item1, unit_price: item1.unit_price)
+
+
+      expect(item1.discounts?).to eq(true)
+      expect(item2.discounts?).to eq(false)
+    end
+
+    it 'can show best_discount' do
+      @user = create(:user)
+      @merchant = create(:merchant, user: @user)
+      @user1 = create(:user)
+      @invoice_1 = create(:invoice, user: @user1, status: 0, created_at: "2012-01-25 09:54:09")
+      item1 = create(:item, unit_price: 20, merchant: @merchant)
+      item2 = create(:item, unit_price: 30, merchant: @merchant)
+      discount = create(:discount, merchant: @merchant, minimum: 3, percentage: 50)
+      invoice = Invoice.create(user: @user, status: 1)
+      invoice_item1 = InvoiceItem.create(invoice: invoice, quantity: 1, item: item1, unit_price: item1.unit_price)
+      invoice_item2 = InvoiceItem.create(invoice: invoice, discount_id: discount.id, quantity: 5, item: item1, unit_price: item1.unit_price)
+
+
+      expect(item1.best_discount(5)).to eq(discount)
+    end
+  end
 end

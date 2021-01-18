@@ -73,8 +73,8 @@ RSpec.describe 'merchant dashboard index', type: :feature do
 
     it 'When I visit my merchant dashboard Then I see link to my merchant items index (/merchant/merchant_id/items) And I see a link to my merchant invoices index (/merchant/merchant_id/invoices)' do
       visit merchant_dashboard_index_path(@merchant)
-      expect(page).to have_link('My Items', href: merchant_items_path(@merchant, lang: 'en'))
-      expect(page).to have_link('My Invoices', href: merchant_invoices_path(@merchant, lang: 'en'))
+      expect(page).to have_link('My Items')
+      expect(page).to have_link('My Invoices')
     end
 
     it 'can show top 5 customers of the merchant' do

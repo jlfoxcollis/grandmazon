@@ -12,7 +12,11 @@ class Item < ApplicationRecord
   enum status: [ :disabled, :enabled ]
 
   def best_discount(quantity)
-    discounts.where('discounts.minimum <= ?', quantity).order(percentage: :desc).limit(1)
+    discounts.where('discounts.minimum <= ?', quantity).order(percentage: :desc).limit(1).first
+  end
+
+  def discounts?
+    discounts.count > 0
   end
 
   def best_day
@@ -21,8 +25,4 @@ class Item < ApplicationRecord
     .max
     .date
   end
-
-  # def self.with_enabled_merchants
-  #   joins(:merchant).where("merchants.status = ?", 1)
-  # end
 end

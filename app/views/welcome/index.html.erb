@@ -5,23 +5,27 @@
     </div>
   </div>
   <div class="level-right is-size-4">
-    <%= link_to "#{t('dashboard_cart')} (#{cart.total_count})", cart_path(cart), class: 'button is-success is-medium' %>
+    <%= link_to "#{t('dashboard_cart')} (#{cart.total_count})", shopping_cart_path(cart), class: 'button is-success is-medium' %>
   </div>
 </nav>
 <hr>
 
 <section class="section">
   <section class="section is-size-5 box" id="invoices">
+    <div class="paginator">
+      <%= will_paginate @merchants %>
+    </div>
     <% @merchants.each do |merchant| %>
       <section class="section" id="merchant-<%= merchant.id %>">
         <p class="title has-text-centered"><%= link_to "#{merchant.name}", user_merchant_path(merchant.user, merchant) %></p>
         <% merchant.items.each do |item| %>
           <section class="section" id="item-<%= item.id %>">
             <p class="title has-text-centered"><%= link_to "#{item.name} — #{number_to_currency(item.unit_price, precision: 0)}", merchant_item_path(item.merchant_id, item.id) %></p>
-            <p><%= button_to t("add_to_cart"), "/cart/#{item.id}", params: {add_item: true}, method: :patch, class: 'button is-large is-primary is-fullwidth' %></p>
+            <p><%= button_to t("add_to_cart"), shopping_cart_path(item.id), params: {add_item: true}, method: :patch, class: 'button is-large is-primary is-fullwidth' %></p>
           </section>
         <% end %>
       </section>
     <% end %>
+
   </section>
 </section>

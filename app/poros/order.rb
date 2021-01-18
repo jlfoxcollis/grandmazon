@@ -5,6 +5,7 @@ class Order
     @user = user
     @contents = data
     @invoice = invoice
+    create_invoice
     invoice_items
   end
 
@@ -28,9 +29,9 @@ class Order
 
   def invoice_items
     item_list.map do |item, quantity|
-      discount = item.best_discount(quantity)
-      if discount.first != nil
-        InvoiceItem.create(quantity: quantity, unit_price: (item.unit_price * ((100 - discount.first.percentage)/100)), discount_id: discount.first.id, status: 0, item: item, invoice: @invoice)
+      if item.discounts? && item.best_discount(quantity) != nil
+        discount = item.best_discount(quantity)
+        InvoiceItem.create(quantity: quantity, unit_price: (item.unit_price * ((100 - discount.percentage)/100)), discount_id: discount.id, status: 0, item: item, invoice: @invoice)
       else
         InvoiceItem.create(quantity: quantity, unit_price: item.unit_price, status: 0, item: item, invoice: @invoice)
       end

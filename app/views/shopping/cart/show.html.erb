@@ -1,0 +1,85 @@
+<nav class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h2><%= t('.items_in_cart') %></h2>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <% if user_signed_in? %>
+      <%= link_to t('.check_out'), shopping_checkout_index_path, method: :get, class: 'button is-medium is-success' %>
+    <% else %>
+      <%= link_to t('.check_out'), new_user_session_path, class: 'button is-medium is-success' %>
+    <% end %>
+  </div>
+</nav>
+<hr>
+
+<section class="section">
+
+  <table class="table is-striped">
+    <tr>
+      <th>Item </th>
+      <th colspan="3">Discounts Available</th>
+    </tr>
+    <% @item_list.each do |item| %>
+    <tr>
+      <td><%= item.name %></td>
+      <td>
+        <table class="table is-striped">
+          <% if item.discounts? %>
+            <% item.discounts.each do |discount| %>
+              <tr>
+                <td>Discount: <%= link_to discount.name, merchant_discount_path(item.merchant, discount) %></td>
+                <td>Percent off: <%= discount.percentage %>%</td>
+                <td>Minimum order quantity: <%= discount.minimum %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td> No discounts available.</td>
+            </tr>
+          <% end %>
+        </table>
+          </td>
+        </tr>
+    <% end %><br>
+  </table>
+
+
+  <table class="table is-striped is-hoverable">
+    <thead>
+      <tr>
+        <th id="cart-table"><%= t('.item_name') %></th>
+        <th id="cart-table"><%= t('.quantity') %></th>
+        <th id="cart-table"><%= t('.price_per_item') %></th>
+        <th id="cart-table"><%= t('.remove') %></th>
+      </tr>
+    </thead>
+    <tbody class="has-text-centered">
+      <tr>
+        <% @item_list.each do |item| %>
+          <div id="item-<%= item.id %>">
+          <td id="cart-table"><%= item.name %></td>
+          <td id="cart-table">
+            <div class="level">
+            <div class="level-left">
+              <section class="level-item">
+                <%= button_to "-", shopping_cart_path(item.id), params: {remove_item: true}, method: :patch, id: "remove-#{item.id}", class: "button is-danger" %>
+              </section>
+            </div>
+            <%= cart.count_of(item.id) %>
+            <div class="level-right">
+              <section class="level-item">
+                <%= button_to "+", shopping_cart_path(item.id), params: {add_item: true},method: :patch, id: "add-#{item.id}", class: "button is-light" %>
+              </section>
+            </div>
+          </td>
+          <td id="cart-table"><%= number_to_currency(item.unit_price, precision: 0) %></td>
+          <td id="cart-table"><%= link_to t('.remove_item'), shopping_cart_path(item.id), method: :delete, class: 'button is-danger is-light' %></td>
+          </div>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

@@ -23,7 +23,7 @@
         <th><%= t('.item_name') %></th>
         <th><%= t('.quantity') %></th>
         <th><%= t('.unit_price') %></th>
-        <th colspan="2"><%= t('.status') %></th>
+        <th><%= t('.status') %></th>
         <th><%= t('.discount_applied') %></th>
       </tr>
     </thead>
@@ -39,7 +39,7 @@
               <%= button_tag t('.submit') %>
             </td>
           <td><% if invitem.discount != false %>
-            <%= link_to invitem.discount.first.name, merchant_discount_path(@merchant, invitem.discount.first) %>
+            <%= link_to invitem.discount.name, merchant_discount_path(@merchant, invitem.discount) %>
           <% end %></td>
           </div>
         <% end %>

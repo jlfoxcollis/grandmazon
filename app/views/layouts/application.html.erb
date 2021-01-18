@@ -13,7 +13,7 @@
 
     <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/"><%= image_tag 'logo.png', alt: "Little Esty Shop", id: 'logo' %></a>
+        <a class="navbar-item" href="/"><%= image_tag '3dsal.png', alt: "Little Esty Shop", id: 'logo' %></a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarData">
           <span aria-hidden="true"></span>
@@ -46,10 +46,10 @@
           <% end %>
           <% if user_signed_in? %>
             <%= link_to t('my_account'), user_path(current_user), class: 'navbar-item' %>
-            <%= link_to t("my_cart"), cart_path(cart), class: 'navbar-item' %>
+            <%= link_to t("my_cart"), shopping_cart_path(cart), class: 'navbar-item' %>
             <%= link_to t('log_out'), destroy_user_session_path, method: :delete, class: 'navbar-item' %>
           <% else %>
-            <%= link_to t('my_cart'), cart_path(cart), class: 'navbar-item' %>
+            <%= link_to t('my_cart'), shopping_cart_path(cart), class: 'navbar-item' %>
             <%= link_to t('sign_up'), new_user_registration_path, class: 'navbar-item' %>
             <%= link_to t('log_in'), new_user_session_path, class: 'navbar-item' %>
           <% end %>
@@ -74,7 +74,7 @@
               <% end %>
             </div>
           </article>
-        <% end %>
+        <% end %><br><br>
 
         <%= yield %>
 

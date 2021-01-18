@@ -11,6 +11,6 @@ class WelcomeController < ApplicationController
   private
 
   def set_items
-    @merchants = Merchant.where(status: :enabled)
+    @merchants = Merchant.where(status: :enabled).paginate(:page => params[:page], :per_page => 5)
   end
 end

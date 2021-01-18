@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
-  # scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/, defaults: {locale: "en"} do
     root to: "welcome#index"
 
     devise_for :users, controllers: {:registrations => "users/registrations"}
-    resources :users, only: [:show] do
-      resources :merchants, controller: 'users/merchants', only: [:new, :create, :edit, :show, :update, :destroy ]
+    resources :users, only: [:show], module: :users do
+      resources :merchants, only: [:new, :create, :edit, :show, :update, :destroy ]
+      resources :orders, only: [:index, :create, :show]
+      resources :invoices, only: [:index, :show]
     end
-    resources :customers, only: [:show]
     resources :welcome, only: [:index]
-    resources :cart, only: [:show, :update, :destroy]
-    put '/cart/:id', to: "cart#remove", as: "minus_item"
-    resources :orders, only: [:create, :show]
+    namespace :shopping do
+      resources :cart, only: [:show, :update, :destroy]
+      resources :checkout, only: [:index]
+    end
 
+    resources :admin, controller: 'admin/dashboard', only: [:index]
     namespace :admin do
       resources :merchants, except: [:destroy]
       resources :merchants_status, only: [:update]
@@ -19,7 +21,7 @@ Rails.application.routes.draw do
       resources :invoices, only: [:index, :show, :update]
     end
 
-    resources :merchants, module: :merchant do
+    resources :merchants, only: [:show], module: :merchant do
       resources :discounts
       resources :items
       resources :items_status, controller: "merchant_items_status", only: [:update]
@@ -29,6 +31,4 @@ Rails.application.routes.draw do
     end
 
 
-    resources :admin, controller: 'admin/dashboard', only: [:index]
   end
-# end

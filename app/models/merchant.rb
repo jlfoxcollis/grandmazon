@@ -1,4 +1,5 @@
 class Merchant < ApplicationRecord
+  has_one_attached :avatar
   validates_presence_of :name
   belongs_to :user
   has_many :discounts, dependent: :nullify

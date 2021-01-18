@@ -1,4 +1,4 @@
-class CartController < ApplicationController
+class Shopping::CartController < ApplicationController
   include ActionView::Helpers::TextHelper
 
   def show
@@ -15,7 +15,7 @@ class CartController < ApplicationController
     end
     quantity = cart.count_of(item.id)
     flash[:notice] = "You now have #{pluralize(quantity, "copy")} of #{item.name} in your cart."
-    redirect_to cart_path(cart)
+    redirect_to shopping_cart_path(cart)
   end
 
   def destroy
@@ -23,7 +23,7 @@ class CartController < ApplicationController
     session[:cart] = cart.contents
     cart.delete_item(item.id)
     flash[:notice] = "#{item.name} has been removed from your cart."
-    redirect_to cart_path(cart)
+    redirect_to shopping_cart_path(cart)
   end
 
 end

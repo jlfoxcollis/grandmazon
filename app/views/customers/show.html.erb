@@ -1,9 +1,0 @@
-<% @customer.invoices.each do |invoice| %>
-  <%= invoice.id %>
-<% end %>
-
-<% @customer.invoice_items.each do |invitem| %>
-  <%= invitem.item.name %>
-  <%= invitem.quantity %>
-  <%= invitem.unit_price %>
-<% end.uniq %>

@@ -39,6 +39,7 @@ gem "bulma-rails", "~> 0.9.1"
 gem "factory_bot", require: true
 gem "faker", require: true
 gem "devise"
+gem 'will_paginate'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -56,6 +57,7 @@ group :development, :test do
   gem "hirb"
   gem "factory_bot_rails"
   gem "webmock"
+  gem "vcr"
 end
 
 group :development do
