@@ -8,7 +8,8 @@
         </article>
       <% end %>
 
-
+      <p><%= f.label "Show Page Image" %>
+        <%= f.file_field :avatar %></p><br />
       <p><%= f.label :name, class: 'label is-large' %><br />
         <%= f.text_field :name, value: @merchant.name, class: 'input is-large' %></p>
       <p><%= f.submit class: 'input button is-large is-primary' %></p>

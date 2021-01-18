@@ -25,6 +25,10 @@ class Users::MerchantsController < ApplicationController
 
   def update
     if @merchant.update(merchant_params)
+      @merchant.avatar.attach(params[:merchant][:avatar])
+      # binding.pry
+      # @merchant.avatar.attach(io: File.open('app/assets/images/placeholder.png'),
+      # filename: 'placeholder.png', content_type: 'image/png')
       flash.notice = "Merchant profile was updated Successfully!"
       redirect_to user_merchant_path(current_user, @merchant)
     else
@@ -37,7 +41,7 @@ class Users::MerchantsController < ApplicationController
   private
 
   def merchant_params
-    params.require(:merchant).permit(:name)
+    params.require(:merchant).permit(:name, :avatar)
   end
 
   def set_merchant

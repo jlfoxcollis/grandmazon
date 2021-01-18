@@ -8,6 +8,9 @@
 <section class="section">
   <div class=".container.is-max-widescreen">
     <h1 class="title has-text-centered"><%= @merchant.name %></h1>
+    <% if @merchant.avatar.attached? %>
+      <image src="<%=(url_for(@merchant.avatar))%>">
+    <% end %>
   </div><br>
   <div class="columns">
     <div class="column box> id="available-discounts">

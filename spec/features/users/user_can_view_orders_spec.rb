@@ -24,7 +24,8 @@ RSpec.describe 'it can see all orders it placed', type: :feature do
       login_as(@user, scope: :user)
 
       visit user_orders_path(@user)
-
-      expect(page).to have_content("Invoice-#{@invoice_1.id}")
+      within("#order-#{@invoice_1.id}") do
+        expect(page).to have_content("Item count on invoice: #{@invoice_1.items.count}")
+      end
     end
   end

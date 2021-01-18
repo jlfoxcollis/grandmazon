@@ -16,8 +16,8 @@
           <% @orders.each do |invoice| %>
             <% if invoice.in_progress? %>
               <p id='order-<%= invoice.id %>'>
-                <%= link_to "Invoice- #{invoice.id}", user_order_path(current_user, invoice), class: 'is-size-5' %>:
-                Item count on invoice: <%= invoice.items.count %>.  
+                <%= link_to "Invoice-#{invoice.id}", user_order_path(current_user, invoice), class: 'is-size-5' %>:
+                Item count on invoice: <%= invoice.items.count %>.
                 <%= invoice.status.humanize %>
               </p>
             <% end %>
