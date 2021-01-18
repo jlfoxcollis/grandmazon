@@ -12,6 +12,9 @@
 
 <section class="section">
   <section class="section is-size-5 box" id="invoices">
+    <div class="paginator">
+      <%= will_paginate @merchants %>
+    </div>
     <% @merchants.each do |merchant| %>
       <section class="section" id="merchant-<%= merchant.id %>">
         <p class="title has-text-centered"><%= link_to "#{merchant.name}", user_merchant_path(merchant.user, merchant) %></p>
@@ -23,5 +26,6 @@
         <% end %>
       </section>
     <% end %>
+
   </section>
 </section>
