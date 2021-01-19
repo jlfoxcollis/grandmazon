@@ -19,9 +19,9 @@ User.destroy_all
 20.times do
   @user = FactoryBot.create(:user)
   @merchant = FactoryBot.create(:merchant, name: @user.name, user: @user)
-  2.times do
-    @merchant.discounts.create(name: Faker::TvShows::StrangerThings.character, percentage: Faker::Number.between(from: 0, to: 100), minimum: Faker::Number.between(from: 1, to: 20))
-  end
+  FactoryBot.create(:discount, merchant: @merchant)
+  FactoryBot.create(:discount, name: Faker::TvShows::StrangerThings.character, percentage: Faker::Number.between(from: 15, to: 50), minimum: Faker::Number.between(from: 6, to: 20), merchant: @merchant)
+
   10.times do
     FactoryBot.create(:item, merchant: @merchant)
   end
