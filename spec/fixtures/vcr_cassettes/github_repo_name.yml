@@ -1,0 +1,75 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/jlfoxcollis/grandmazon
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Tue, 19 Jan 2021 01:46:47 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 200 OK
+      Cache-Control:
+      - public, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Accept-Encoding, Accept, X-Requested-With
+      Etag:
+      - W/"748090aaad48672796cb834d3302996226176e44ecfca4bb7f15aa20ee7befc1"
+      Last-Modified:
+      - Mon, 18 Jan 2021 14:26:27 GMT
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes,
+        X-Poll-Interval, X-GitHub-Media-Type, Deprecation, Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '45'
+      X-Ratelimit-Reset:
+      - '1611021973'
+      X-Ratelimit-Used:
+      - '15'
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '1165'
+      X-Github-Request-Id:
+      - E6A0:1D4C:1124991:1CA67C6:60063A07
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":329746207,"node_id":"MDEwOlJlcG9zaXRvcnkzMjk3NDYyMDc=","name":"grandmazon","full_name":"jlfoxcollis/grandmazon","private":false,"owner":{"login":"jlfoxcollis","id":68164897,"node_id":"MDQ6VXNlcjY4MTY0ODk3","avatar_url":"https://avatars0.githubusercontent.com/u/68164897?v=4","gravatar_id":"","url":"https://api.github.com/users/jlfoxcollis","html_url":"https://github.com/jlfoxcollis","followers_url":"https://api.github.com/users/jlfoxcollis/followers","following_url":"https://api.github.com/users/jlfoxcollis/following{/other_user}","gists_url":"https://api.github.com/users/jlfoxcollis/gists{/gist_id}","starred_url":"https://api.github.com/users/jlfoxcollis/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/jlfoxcollis/subscriptions","organizations_url":"https://api.github.com/users/jlfoxcollis/orgs","repos_url":"https://api.github.com/users/jlfoxcollis/repos","events_url":"https://api.github.com/users/jlfoxcollis/events{/privacy}","received_events_url":"https://api.github.com/users/jlfoxcollis/received_events","type":"User","site_admin":false},"html_url":"https://github.com/jlfoxcollis/grandmazon","description":null,"fork":false,"url":"https://api.github.com/repos/jlfoxcollis/grandmazon","forks_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/forks","keys_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/keys{/key_id}","collaborators_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/teams","hooks_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/hooks","issue_events_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/issues/events{/number}","events_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/events","assignees_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/assignees{/user}","branches_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/branches{/branch}","tags_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/tags","blobs_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/git/refs{/sha}","trees_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/git/trees{/sha}","statuses_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/statuses/{sha}","languages_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/languages","stargazers_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/stargazers","contributors_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/contributors","subscribers_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/subscribers","subscription_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/subscription","commits_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/commits{/sha}","git_commits_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/git/commits{/sha}","comments_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/comments{/number}","issue_comment_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/issues/comments{/number}","contents_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/contents/{+path}","compare_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/compare/{base}...{head}","merges_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/merges","archive_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/downloads","issues_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/issues{/number}","pulls_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/pulls{/number}","milestones_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/milestones{/number}","notifications_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/labels{/name}","releases_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/releases{/id}","deployments_url":"https://api.github.com/repos/jlfoxcollis/grandmazon/deployments","created_at":"2021-01-14T22:09:06Z","updated_at":"2021-01-18T14:26:27Z","pushed_at":"2021-01-18T14:26:23Z","git_url":"git://github.com/jlfoxcollis/grandmazon.git","ssh_url":"git@github.com:jlfoxcollis/grandmazon.git","clone_url":"https://github.com/jlfoxcollis/grandmazon.git","svn_url":"https://github.com/jlfoxcollis/grandmazon","homepage":null,"size":1818,"stargazers_count":0,"watchers_count":0,"language":"Ruby","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"forks_count":0,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":1,"license":null,"forks":0,"open_issues":1,"watchers":0,"default_branch":"main","temp_clone_token":null,"network_count":0,"subscribers_count":1}'
+  recorded_at: Tue, 19 Jan 2021 01:46:47 GMT
+recorded_with: VCR 6.0.0

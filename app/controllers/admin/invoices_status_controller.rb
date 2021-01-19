@@ -3,8 +3,9 @@ class Admin::InvoicesStatusController < Admin::BaseController
 
   def update
     @invoice.update(invoice_params)
-    flash.notice = "#{@invoice.name}'s status was updated successfully!"
-    redirect_to admin_merchant_path(@invoice.merchant)
+    @invoice.invoice_complete_update_invoice_items
+    flash.notice = "Invoice successfully updated!"
+    redirect_to admin_invoice_path(@invoice)
   end
 
   private

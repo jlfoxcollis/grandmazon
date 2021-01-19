@@ -1,13 +1,6 @@
-<nav class="level">
-  <div class="level-left">
-    <div class="level-item">
-      <%= link_to t('.update_merchant'), edit_user_merchant_path(current_user, @merchant), class: "button" %>
-    </div>
-  </div>
-</nav>
 <section class="section">
   <div class=".container.is-max-widescreen">
-    <h1 class="title has-text-centered"><%= @merchant.name %></h1>
+    <h1 class="title has-text-centered">Merchant: <%= @merchant.name %></h1>
     <% if @merchant.avatar.attached? %>
       <image src="<%=(url_for(@merchant.avatar))%>">
     <% end %>
@@ -21,7 +14,6 @@
               Discount: <%= link_to discount.name, merchant_discount_path(@merchant, discount) %>,
               Percent off: <%= discount.percentage %>,
               Minimum Quantity: <%= discount.minimum %>
-              <%= link_to "Delete Discount", merchant_discount_path(@merchant, discount), method: :delete, class: "button" %>
             </li>
           <% end %>
         </ol>
@@ -32,9 +24,9 @@
       <p class="title has-text-centered"><%= t('.items_for_sale') %></p>
       <ol>
         <% @merchant.items.each do |item| %>
-          <li class="block is-size-5">
-            <%= item.name %>
-            <%= item.unit_price %>
+          <li class="block is-size-5" id="item-<%= item.id %>">
+            <%= link_to item.name, shopping_merchant_item_path(@merchant, item) %>
+            <%= item.unit_price %>.00
           </li>
         <% end %>
       </ol>

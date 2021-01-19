@@ -65,11 +65,11 @@ RSpec.describe 'merchants invoices index page', type: :feature do
       5.times do
         create(:invoice_item, item: Item.third, invoice: Invoice.all.sample, status: 0)
       end
-      login_as(@user, scope: :user)
+      login_as(@user)
     end
 
     it 'can show all that merchants invoice attributes' do
-      visit merchant_invoice_path(@merchant.id, @invoice_9.id)
+      visit merchant_invoice_path(@user.merchant, @invoice_9)
 
       expect(page).to have_content(@invoice_9.id)
       expect(page).to have_content("Status: Completed")

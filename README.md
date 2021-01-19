@@ -37,7 +37,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[grandmazon](https://tranquil-forest-27711.herokuapp.com/) is a module 2 solo project for Turing School of Software & Design's Back-End Engineering (BEE) program. Grandmazon is an extension of the group project "Little Esty Shop", which is a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices.
+[grandmazon](https://tranquil-forest-27711.herokuapp.com/) is a module 2 solo project for Turing School of Software & Design's Back-End Engineering (BEE) program. Grandmazon is an extension of the group project "Grandmazon", which is a fictitious e-commerce platform where merchants and admins can manage inventory and fulfill customer invoices.
 
 
 User stories tracked using [Github projects](https://github.com/jlfoxcollis/grandmazon/projects/1).
@@ -47,7 +47,7 @@ User stories tracked using [Github projects](https://github.com/jlfoxcollis/gran
 * Used advanced ActiveRecord to perform complex database queries
 * Utilized namespacing for efficient and organized routing  
 * Practiced MVC concepts, effectively staying within rails conventions
-* Consumed github API and utilized POROS as a way to apply OOP principals 
+* Consumed github API and utilized POROS as a way to apply OOP principals
 * Implemented Cart & Order setup to create a functionable shopping experience
 * Deployed application on [Heroku](https://tranquil-forest-27711.herokuapp.com/)
 
@@ -103,7 +103,7 @@ To get a local copy up and running follow these simple steps.
    ```
    rails s
    ```
-   
+
 OR
 
 1. Visit heroku
@@ -116,10 +116,7 @@ OR
    Admin:
    email: admin@example.com
    password: password
-   
-   User:
-   email: alberto@zulauf.org
-   password: strongpassword
+
    ```
 
 

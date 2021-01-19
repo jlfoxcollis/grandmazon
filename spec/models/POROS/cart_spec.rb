@@ -48,4 +48,14 @@ RSpec.describe Cart do
     end
   end
 
+  describe '#cart' do
+    it 'can create or show a cart' do
+      @user = create(:user)
+      login_as(:user)
+      order = Order.new(subject.contents, @user)
+
+      expect(:cart.class).to eq(Symbol)
+    end
+  end
+
 end

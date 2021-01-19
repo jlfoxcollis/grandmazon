@@ -3,14 +3,18 @@ Rails.application.routes.draw do
 
     devise_for :users, controllers: {:registrations => "users/registrations"}
     resources :users, only: [:show], module: :users do
-      resources :merchants, only: [:new, :create, :edit, :show, :update, :destroy ]
+      resources :merchants, only: [:new, :create, :edit, :update, :destroy ]
       resources :orders, only: [:index, :create, :show]
       resources :invoices, only: [:index, :show]
     end
+
     resources :welcome, only: [:index]
     namespace :shopping do
       resources :cart, only: [:show, :update, :destroy]
       resources :checkout, only: [:index]
+      resources :merchants, only: [:show] do
+        resources :items, only: [:show]
+      end
     end
 
     resources :admin, controller: 'admin/dashboard', only: [:index]
@@ -18,7 +22,7 @@ Rails.application.routes.draw do
       resources :merchants, except: [:destroy]
       resources :merchants_status, only: [:update]
       resources :invoices_status, only: [:update]
-      resources :invoices, only: [:index, :show, :update]
+      resources :invoices, only: [:index, :show]
     end
 
     resources :merchants, only: [:show], module: :merchant do

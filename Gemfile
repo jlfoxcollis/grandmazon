@@ -56,6 +56,8 @@ group :development, :test do
   gem "awesome_print", :require => "ap"
   gem "hirb"
   gem "factory_bot_rails"
+end
+group :test do
   gem "webmock"
   gem "vcr"
 end

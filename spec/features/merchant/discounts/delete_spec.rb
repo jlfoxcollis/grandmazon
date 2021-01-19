@@ -4,8 +4,8 @@ RSpec.describe 'merchant discounts index', type: :feature do
   before :each do
     @user = create(:user)
     @merchant = create(:merchant, user: @user)
-    @discount = create(:discount, merchant: @merchant)
-    @discount1 = create(:discount, merchant: @merchant)
+    @discount = create(:discount, name: "jimmys discount", merchant: @merchant)
+    @discount1 = create(:discount, name: "bob", merchant: @merchant)
 
     login_as(@user, scope: :user)
   end

@@ -23,7 +23,6 @@ RSpec.describe 'merchant discounts index', type: :feature do
       expect(page).to have_content("#{@discount.name}")
       expect(page).to have_content("#{@discount.minimum}")
       expect(page).to have_content("#{@discount.percentage}")
-
     end
   end
 end

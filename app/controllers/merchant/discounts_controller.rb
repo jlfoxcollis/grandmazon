@@ -1,5 +1,4 @@
 class Merchant::DiscountsController < Merchant::BaseController
-  before_action :set_merchant
   before_action :set_discount, only: [:show, :edit, :update]
 
   def index
@@ -56,10 +55,6 @@ class Merchant::DiscountsController < Merchant::BaseController
 
   def update_params
     params.require(:discount).permit(:name, :percentage, :minimum)
-  end
-
-  def set_merchant
-    @merchant = Merchant.find(params[:merchant_id])
   end
 
   def set_discount

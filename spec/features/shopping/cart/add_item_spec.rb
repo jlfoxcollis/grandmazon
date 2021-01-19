@@ -20,7 +20,6 @@ RSpec.describe "When a user adds items to their cart" do
     within("#item-#{@item.id}") do
       click_button "+"
     end
-
     expect(page).to have_content("You now have 3 copies of #{@item.name} in your cart.")
   end
 end
