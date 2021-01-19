@@ -14,6 +14,7 @@ Transaction.destroy_all
 Invoice.destroy_all
 Merchant.destroy_all
 User.destroy_all
+Discount.destroy_all
 
 @admin = FactoryBot.create(:user, admin: true, email: "admin@example.com", password: "password", password_confirmation: "password")
 20.times do
