@@ -1,7 +1,7 @@
 en:
   dashboard_cart: "Cart"
   hello: "Hello world"
-  shop_on_esty: "Shop On Esty"
+  shop_on_grandmazon: "Shop On Grandmazon"
   shop: "Shop"
   add_to_cart: "Add To Cart"
   my_account: "My Account"
@@ -11,7 +11,7 @@ en:
   sign_up: "Sign Up"
   admin_dashboard: "Admin Dashboard"
   merchant_dashboard: "Merchant Dashboard"
-  
+
   users:
     shared:
       links:
@@ -23,7 +23,7 @@ en:
         sign_in_with: "Sign in with"
     registrations:
       new:
-        join_esty: "Join Esty"
+        join_grandmazon: "Join Grandmazon"
         characters_minimum: "characters minimum"
         sign_up: "Sign up"
 
@@ -43,7 +43,7 @@ en:
       index:
         invoices: "Invoices"
         invoice: "Invoice"
-      show: 
+      show:
         invoice: "Invoice"
         update_invoice: "Update Invoice"
         items_on_this_invoice: "Items on this Invoice"
@@ -53,7 +53,7 @@ en:
         status: "Status"
     merchants:
       index:
-        all_esty_merchants: "All Esty Merchants"
+        all_grandmazon_merchants: "All Grandmazon Merchants"
         enabled_merchants: "Enabled Merchants"
         disabled_merchants: "Disabled Merchants"
         disable: "Disable"

@@ -13,7 +13,7 @@ class Users::OrdersController < ApplicationController
   def create
     order = Order.new(cart.contents, current_user)
     session[:cart].clear
-    redirect_to user_order_path(current_user.id, order.invoice)
+    redirect_to user_orders_path(current_user.id)
   end
 
   def show

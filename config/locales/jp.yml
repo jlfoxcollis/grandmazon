@@ -1,7 +1,7 @@
 jp:
   dashboard_cart: "カート"
   hello: "Hello world"
-  shop_on_esty: "Estyで買い物"
+  shop_on_grandmazon: "Grandmazonで買い物"
   shop: "ショップ"
   add_to_cart: "カートに追加"
   my_account: "マイアカウント"
@@ -11,7 +11,7 @@ jp:
   sign_up: "サインアップ"
   admin_dashboard: "管理ダッシュボード"
   merchant_dashboard: "マーチャントダッシュボード"
-  
+
   users:
     shared:
       links:
@@ -23,7 +23,7 @@ jp:
         sign_in_with: "でサインイン"
     registrations:
       new:
-        join_esty: "Estyに参加する"
+        join_grandmazon: "Grandmazonに参加する"
         characters_minimum: "最小文字数"
         sign_up: "サインアップ"
 
@@ -43,7 +43,7 @@ jp:
       index:
         invoices: "請求書"
         invoice: "請求書"
-      show: 
+      show:
         invoice: "請求書"
         update_invoice: "請求書を更新する"
         items_on_this_invoice: "この請求書の項目"
@@ -53,7 +53,7 @@ jp:
         status: "状態"
     merchants:
       index:
-        all_esty_merchants: "すべてのEsty商人"
+        all_grandmazon_merchants: "すべてのGrandmazon商人"
         enabled_merchants: "有効な加盟店"
         disabled_merchants: "無効にされた商人"
         disable: "無効にする"

@@ -5,8 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# require 'factory_bot'
-# FactoryBot.find_definitions
+require 'factory_bot'
+FactoryBot.find_definitions
 
 InvoiceItem.destroy_all
 Item.destroy_all
@@ -14,6 +14,7 @@ Transaction.destroy_all
 Invoice.destroy_all
 Merchant.destroy_all
 User.destroy_all
+Discount.destroy_all
 
 @admin = FactoryBot.create(:user, admin: true, email: "admin@example.com", password: "password", password_confirmation: "password")
 20.times do
