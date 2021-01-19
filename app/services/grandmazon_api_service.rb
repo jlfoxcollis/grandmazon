@@ -1,6 +1,6 @@
 class GrandmazonApiService
   def conn
-    Faraday.new(url: "https://api.github.com")
+    conn = Faraday.new(url: "https://api.github.com")
   end
 
   def call(arg)
@@ -20,5 +20,4 @@ class GrandmazonApiService
   def commits_by_author(name)
     call("/commits?author=#{name}&per_page=100")
   end
-
 end
