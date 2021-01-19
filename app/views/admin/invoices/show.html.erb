@@ -3,7 +3,7 @@
 <p class="title has-text-centered"><%= t('.invoice')%> #<%= @invoice.id %></p>
 
 <section id="update-status">
-  <%= form_with(model: [:admin, @invoice], method: :patch, url: admin_invoice_path(@invoice), local: true) do |f| %>
+  <%= form_with(model: [:admin, @invoice], method: :patch, url: admin_invoices_status_path(@invoice), local: true) do |f| %>
   <div class="field has-addons">
     <div class="control is-expanded">
       <div class="select is-fullwidth is-large">

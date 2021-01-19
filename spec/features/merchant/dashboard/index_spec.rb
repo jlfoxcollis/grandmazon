@@ -8,9 +8,10 @@ RSpec.describe 'merchant dashboard index', type: :feature do
       Invoice.destroy_all
       User.destroy_all
 
-      @user = create(:user)
-      @merchant = create(:merchant, user: @user)
-
+      @user = create(:user, admin: false)
+      @merchant = create(:merchant, name: "good merchant", user: @user)
+      @user9 = create(:user)
+      @merchant2 = create(:merchant, name: "bad merchant", user: @user9)
       @user2 = create(:user)
       @invoice_1 = create(:invoice, user: @user2)
       @invoice_2 = create(:invoice, user: @user2)
@@ -62,11 +63,13 @@ RSpec.describe 'merchant dashboard index', type: :feature do
         create(:invoice_item, item: Item.first, invoice: @invoice_2, status: 2)
         create(:invoice_item, item: Item.first, invoice: @invoice_1, status: 2)
       end
-
-      login_as(@user, scope: :user)
+      login_as(@user)
     end
 
     it 'When I visit my merchant dashboard then I see the name of my merchant' do
+      visit merchant_dashboard_index_path(@user9.merchant)
+      expect(page).to have_content("You do not have permission to view this page.")
+
       visit merchant_dashboard_index_path(@merchant)
       expect(page).to have_content(@merchant.name)
     end
