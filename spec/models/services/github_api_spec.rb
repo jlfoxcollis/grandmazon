@@ -13,15 +13,15 @@ feature 'External request' do
   #   expect(response).to be_an_instance_of(String)
   # end
 
-  describe 'can return name of repo' do
-    let(:user_response) do
-      VCR.use_cassette("github-api") do
-        GrandmazonApiService.call("")
-
-        expect(response).to eq("little-esty-shop")
-      end
-    end
-  end
+  # describe 'can return name of repo' do
+  #   let(:user_response) do
+  #     VCR.use_cassette("github-api") do
+  #       GrandmazonApiService.call("")
+  #
+  #       expect(response).to eq("little-esty-shop")
+  #     end
+  #   end
+  # end
 
   # it 'can return commit count of repo' do
   #   stub_request(:any, /api.github.com/).

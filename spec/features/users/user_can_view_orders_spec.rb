@@ -8,7 +8,7 @@ RSpec.describe 'it can see all orders it placed', type: :feature do
       @discount = create(:discount, merchant: @merchant)
       @discount1 = create(:discount, merchant: @merchant)
 
-      @invoice_1 = create(:invoice, user: @user)
+      @invoice_1 = create(:invoice, status: 1, user: @user)
       @invoice_2 = create(:invoice, user: @user)
       create(:transaction, result: 1, invoice: @invoice_1)
       create(:transaction, result: 1, invoice: @invoice_2)
@@ -24,8 +24,10 @@ RSpec.describe 'it can see all orders it placed', type: :feature do
       login_as(@user, scope: :user)
 
       visit user_orders_path(@user)
+
       within("#order-#{@invoice_1.id}") do
         expect(page).to have_content("Item count on invoice: #{@invoice_1.items.count}")
       end
+
     end
   end
