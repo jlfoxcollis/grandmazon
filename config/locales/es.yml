@@ -1,7 +1,7 @@
 es:
   dashboard_cart: "Carrito"
   hello: "Hola Mundo!"
-  shop_on_esty: "Compra En Esty"
+  shop_on_grandmazon: "Compra En Grandmazon"
   shop: "Hacer Compras"
   add_to_cart: "Agregar Al Carrito"
   my_account: "Mi Cuenta"
@@ -23,7 +23,7 @@ es:
         sign_in_with: "Inicia sesión con"
     registrations:
       new:
-        join_esty: "Unirse Esty"
+        join_grandmazon: "Unirse Grandmazon"
         characters_minimum: "mínimo de caracteres"
         sign_up: "Regístrate"
 
@@ -32,7 +32,7 @@ es:
       admin_nav:
         dashboard_nav: "Tablero"
         merchants: "Comerciantes"
-        invoices: "Facturas" 
+        invoices: "Facturas"
         admin_dashboard: "Panel De Administración"
       index:
         incomplete_invoices: "Facturas Incompletas"
@@ -43,7 +43,7 @@ es:
       index:
         invoices: "Facturas"
         invoice: "Factura"
-      show: 
+      show:
         invoice: "Factura"
         update_invoice: "Actualizar factura"
         items_on_this_invoice: "Elementos De Esta Factura"
@@ -53,7 +53,7 @@ es:
         status: "Estado"
     merchants:
       index:
-        all_esty_merchants: "Todos los comerciantes de Esty"
+        all_grandmazon_merchants: "Todos los comerciantes de Grandmazon"
         enabled_merchants: "Comerciantes habilitados"
         disabled_merchants: "Comerciantes discapacitados"
         disable: "Inhabilitar"
