@@ -10,7 +10,7 @@
             <% grand_total += item.unit_price * cart.count_of(item.id) %>
           <% end %>
         <% end %>
-        $<%= grand_total %></h2>
+        <%= number_to_currency(grand_total, precision: 2) %></h2>
       </div>
     </div>
   </div>
@@ -45,11 +45,11 @@
           <td id="checkout-table">
             <%= cart.count_of(item.id) %>
           </td>
-          <td id="checkout-table"><%= number_to_currency(item.unit_price, precision: 0) %></td>
+          <td id="checkout-table"><%= number_to_currency(item.unit_price, precision: 2) %></td>
           <td id="checkout-table">
             <% if item.discounts? && item.best_discount(cart.count_of(item.id)) != nil %>
               <%= link_to t("#{item.best_discount(cart.count_of(item.id)).name}"), merchant_discount_path(item.merchant, item.best_discount(cart.count_of(item.id))), method: :get, class: 'button is-danger is-light' %></td>
-          <td>  $<%= item.unit_price * ((100 - item.best_discount(cart.count_of(item.id)).percentage) / 100) %></td>
+          <td>  <%= number_to_currency(item.unit_price * ((100 - item.best_discount(cart.count_of(item.id)).percentage) / 100), precision: 2) %></td>
             <% end %>
           </div>
       </tr>

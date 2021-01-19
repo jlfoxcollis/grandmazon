@@ -65,11 +65,11 @@ RSpec.describe 'merchants items show page', type: :feature do
       5.times do
         create(:invoice_item, item: Item.third, invoice: Invoice.all.sample, status: 0)
       end
-      login_as(@user, scope: :user)
+      login_as(@user)
     end
 
     it 'can show an an items name, description, current selling price.' do
-      visit merchant_item_path(@merchant.id, @merchant.items.first.id)
+      visit merchant_item_path(@merchant, @merchant.items.first)
 
       expect(page).to have_content("#{@merchant.items.first.name}")
       expect(page).to have_content("#{@merchant.items.first.description}")

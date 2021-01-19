@@ -11,6 +11,11 @@ class Invoice < ApplicationRecord
     invoice_items.sum('invoice_items.unit_price * invoice_items.quantity')
   end
 
+  def invoice_complete_update_invoice_items
+    update = invoice_items.where.not(discount_id: nil)
+    InvoiceItemsWithDiscount.update_percentage(update)
+  end
+
   def discounts_applied
     invitems = invoice_items.pluck(:discount_id).compact
     if !invitems.empty?

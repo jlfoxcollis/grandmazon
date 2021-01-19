@@ -69,5 +69,35 @@ describe 'As an admin' do
       expect(page).to have_content("Total Revenue: $#{invoice.total_revenue}")
       expect(page).to have_content("Discounts Applied: #{discount.name}")
     end
+
+    it 'can update invoice items with discount percentages when invoice marked complete' do
+      @admin = create(:user, admin: true)
+      @user1 = create(:user)
+      @merchant = create(:merchant, user: @user1)
+      @invoice_1 = create(:invoice, user: @user1, status: 0, created_at: "2012-01-25 09:54:09")
+      @invoice_2 = create(:invoice, user: @user1, status: 0)
+      item1 = create(:item, unit_price: 20, merchant: @merchant)
+      item2 = create(:item, unit_price: 30, merchant: @merchant)
+      discount = create(:discount, merchant: @merchant, minimum: 3, percentage: 50)
+      invoice = Invoice.create(user: @admin, status: 1)
+      invoice_item1 = InvoiceItem.create(invoice: invoice, quantity: 1, item: item1, unit_price: item1.unit_price)
+      invoice_item2 = InvoiceItem.create(invoice: invoice, discount_id: discount.id, quantity: 5, item: item1, unit_price: item1.unit_price)
+
+      visit admin_invoice_path(invoice)
+
+      within("#status-#{invoice_item2.id}") do
+        expect(page).to have_content("Pending")
+      end
+      select("Completed", :from => "invoice[status]")
+
+      click_button "Update Invoice"
+      
+      within("#status-#{invoice_item2.id}") do
+        expect(page).to have_content("#{discount.percentage}")
+      end
+
+      expect(invoice_item2.reload.discount_percent).to eq(discount.percentage)
+      expect(invoice_item1.reload.discount_percent).to eq(nil)
+    end
   end
 end

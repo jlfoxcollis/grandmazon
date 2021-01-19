@@ -2,6 +2,7 @@ class Admin::InvoicesStatusController < Admin::BaseController
   before_action :set_invoice, only: [:update]
 
   def update
+    binding.pry
     @invoice.update(invoice_params)
     flash.notice = "#{@invoice.name}'s status was updated successfully!"
     redirect_to admin_merchant_path(@invoice.merchant)

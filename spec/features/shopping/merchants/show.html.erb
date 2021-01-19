@@ -1,0 +1,15 @@
+require 'rails_helper'
+
+describe 'it can show an items show page', type: :feature do
+  it 'displays an item for sale' do
+    @merchant = create(:merchant)
+    @item = create(:item, merchant: @merchant)
+
+    visit shopping_item_path(@item)
+    within("item-#{@item.id}") do
+      expect(page).to have_content("1. #{@item.name}")
+    end
+    expect(page).to have_content("Merchant: #{@merchant.name}")
+    expect(page).to have_content("Discounts Available:")
+  end
+end

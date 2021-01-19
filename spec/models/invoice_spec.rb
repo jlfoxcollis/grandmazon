@@ -61,6 +61,25 @@ RSpec.describe Invoice, type: :model do
       expect(invoice.discounts_applied).to eq([discount])
       expect(@invoice_2.discounts_applied).to eq(false)
     end
+
+    it '#invoice_complete_update_invoice_items' do
+      @user = create(:user)
+      @merchant = create(:merchant, user: @user)
+      @user1 = create(:user)
+      @invoice_1 = create(:invoice, user: @user1, status: 0, created_at: "2012-01-25 09:54:09")
+      @invoice_2 = create(:invoice, user: @user1, status: 0)
+      item1 = create(:item, unit_price: 20, merchant: @merchant)
+      item2 = create(:item, unit_price: 30, merchant: @merchant)
+      discount = create(:discount, merchant: @merchant, minimum: 3, percentage: 50)
+      invoice = Invoice.create(user: @user, status: 1)
+      invoice_item1 = InvoiceItem.create(invoice: invoice, quantity: 1, item: item1, unit_price: item1.unit_price)
+      invoice_item2 = InvoiceItem.create(invoice: invoice, discount_id: discount.id, quantity: 5, item: item1, unit_price: item1.unit_price)
+
+      expect(invoice_item2.discount_percent).to eq(nil)
+      invoice.invoice_complete_update_invoice_items
+      expect(invoice_item2.reload.discount_percent).to eq(discount.percentage)
+
+    end
   end
 
   describe 'class methods' do

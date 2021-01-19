@@ -1,6 +1,5 @@
 class Merchant::MerchantItemsStatusController < Merchant::BaseController
   before_action :set_item, only: [:update]
-  before_action :set_merchant, only: [:update]
 
   def update
     @item.update!(item_params)
@@ -16,9 +15,5 @@ class Merchant::MerchantItemsStatusController < Merchant::BaseController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def set_merchant
-    @merchant = Merchant.find(params[:merchant_id])
   end
 end

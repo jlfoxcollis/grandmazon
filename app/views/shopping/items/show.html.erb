@@ -1,10 +1,11 @@
-<%= render 'merchant/dashboard/merchant_nav' %>
-
 <h3 class="has-text-centered"><%= @item.name %></h3>
 
 <section class="section">
+  <p class="is-size-4"><%= t('.merchant') %>: <%= link_to @item.merchant.name, shopping_merchant_path(@item.merchant) %></p>
   <p class="is-size-4"><%= t('.description') %>: <%= @item.description %></p>
   <p class="is-size-4"><%= t('.current_price') %>: <%= number_to_currency(@item.unit_price, precision: 2) %></p>
+  <p class="is-size-4"><%= t('.discounts_available') %>:
+    <% if @item.discounts? %>
+    <%= @item.discounts.pluck(:name).join %>
+    <% end %></p>
 </section>
-
-<%= link_to t('.edit_item'), edit_merchant_item_path(@item.merchant_id, @item.id), class: 'button block is-large is-fullwidth is-primary' %>

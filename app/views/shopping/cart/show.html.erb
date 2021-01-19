@@ -75,7 +75,7 @@
               </section>
             </div>
           </td>
-          <td id="cart-table"><%= number_to_currency(item.unit_price, precision: 0) %></td>
+          <td id="cart-table"><%= number_to_currency(item.unit_price, precision: 2) %></td>
           <td id="cart-table"><%= link_to t('.remove_item'), shopping_cart_path(item.id), method: :delete, class: 'button is-danger is-light' %></td>
           </div>
       </tr>

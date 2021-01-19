@@ -33,7 +33,7 @@
           <div id="status-<%= invitem.id %>">
           <td><%= invitem.item.name %></td>
           <td><%= invitem.quantity %></td>
-          <td><%= invitem.unit_price %></td>
+          <td><%= invitem.unit_price %>.00</td>
           <td><%= form_with model: invitem, method: :patch, url: merchant_invoice_item_path(@merchant, invitem), local: true do |f| %>
               <%= f.select :status, enum_collection_for_select(InvoiceItem.statuses, include_blank = false), selected: invitem.status  %>
               <%= button_tag t('.submit') %>

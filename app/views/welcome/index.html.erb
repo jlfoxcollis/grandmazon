@@ -17,11 +17,11 @@
     </div>
     <% @merchants.each do |merchant| %>
       <section class="section" id="merchant-<%= merchant.id %>">
-        <p class="title has-text-centered"><%= link_to "#{merchant.name}", user_merchant_path(merchant.user, merchant) %></p>
+        <h1 class="title has-text-centered"><%= link_to "#{merchant.name}", shopping_merchant_path(merchant) %></h1>
         <% merchant.items.each do |item| %>
-          <section class="section" id="item-<%= item.id %>">
-            <p class="title has-text-centered"><%= link_to "#{item.name} — #{number_to_currency(item.unit_price, precision: 0)}", merchant_item_path(item.merchant_id, item.id) %></p>
-            <p><%= button_to t("add_to_cart"), shopping_cart_path(item.id), params: {add_item: true}, method: :patch, class: 'button is-large is-primary is-fullwidth' %></p>
+          <section class="box has-text-centered" id="item-<%= item.id %>">
+            <p class="title has-text-centered"><%= link_to "#{item.name} — #{number_to_currency(item.unit_price, precision: 2)}", shopping_merchant_item_path(merchant, item.id) %></p>
+            <p class="title has-text-centered"><%= button_to t("add_to_cart"), shopping_cart_path(item.id), params: {add_item: true}, method: :patch, class: 'button is-large is-primary is-center' %></p>
           </section>
         <% end %>
       </section>

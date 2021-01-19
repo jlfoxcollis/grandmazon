@@ -1,6 +1,5 @@
 class Merchant::ItemsController < Merchant::BaseController
   before_action :set_item, except: [:index, :new, :create]
-  before_action :set_merchant
 
   def index
   end
@@ -46,9 +45,5 @@ class Merchant::ItemsController < Merchant::BaseController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def set_merchant
-    @merchant = Merchant.find(params[:merchant_id])
   end
 end
