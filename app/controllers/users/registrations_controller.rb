@@ -14,6 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do |resource|
       if resource.persisted?
         session[:unconfirmed_account] = resource.id
+        UserMailer.with(user: @user).welcome_email.deliver_now
       end
     end
   end
