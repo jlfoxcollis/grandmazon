@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_many :invoice_items, through: :invoices
   has_many :items, through: :invoice_items
   has_many :merchants, through: :items
-  after_save :welcome_email
 
 
   def self.top_five_customers
@@ -38,10 +37,7 @@ class User < ApplicationRecord
     false
   end
 
-  def welcome_email
-    binding.pry
-    UserMailer.welcome_email(self).deliver_now
-  end
+
 
          # create_table "users", force: :cascade do |t|
          #   t.string "email", default: "", null: false
