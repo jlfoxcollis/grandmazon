@@ -11,7 +11,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    super do |resource|
+      if resource.persisted?
+        session[:unconfirmed_account] = resource.id
+      end
+    end
+    UserMailer.with(user: @user).welcome_email.deliver_now
   end
 
   # GET /resource/edit

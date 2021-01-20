@@ -49,6 +49,9 @@ RSpec.describe "When a user tries to checkout" do
 
     click_on 'Submit Order'
 
+    expect(page).to have_content("Invoice-#{@user1.invoices.first.id}")
+
+    visit user_order_path(@user1, @user1.invoices.first)
 
     expect(page).to have_content("#{@user1.invoice_items.first.item.name}")
   end

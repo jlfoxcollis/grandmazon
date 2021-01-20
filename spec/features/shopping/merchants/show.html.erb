@@ -11,5 +11,6 @@ describe 'it can show an items show page', type: :feature do
     end
     expect(page).to have_content("Merchant: #{@merchant.name}")
     expect(page).to have_content("Discounts Available:")
+    expect(page).to have_mail_to("click here")
   end
 end

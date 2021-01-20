@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     root to: "welcome#index"
 
-    devise_for :users, controllers: {:registrations => "users/registrations"}
+    devise_for :users, controllers: {:registrations => "users/registrations", confirmations: 'confirmations' }
     resources :users, only: [:show], module: :users do
       resources :merchants, only: [:new, :create, :edit, :update, :destroy ]
       resources :orders, only: [:index, :create, :show]
