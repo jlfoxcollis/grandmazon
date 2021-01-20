@@ -10,10 +10,6 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input is-large' %>
     </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-    <% end %>
-
     <div class="field">
       <%= f.label :first_name, class: 'label is-large' %><br />
       <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: 'input is-large' %>

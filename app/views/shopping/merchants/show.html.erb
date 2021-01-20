@@ -1,6 +1,7 @@
 <section class="section">
   <div class=".container.is-max-widescreen">
     <h1 class="title has-text-centered">Merchant: <%= @merchant.name %></h1>
+    <h3 class="has-text-centered">Need to ask the merchant a question?<%= mail_to "#{@merchant.user.email}", "click here" %>
     <% if @merchant.avatar.attached? %>
       <image src="<%=(url_for(@merchant.avatar))%>">
     <% end %>

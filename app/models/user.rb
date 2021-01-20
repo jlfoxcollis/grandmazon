@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable, reconfirmable: false
+
   validates :first_name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "only allows letters" }
   validates_presence_of :last_name
   has_one :merchant, dependent: :destroy
@@ -28,6 +29,12 @@ class User < ApplicationRecord
 
   def name
     first_name + " " + last_name
+  end
+
+  private
+
+  def confirmation_required?
+    false
   end
 
          # create_table "users", force: :cascade do |t|
