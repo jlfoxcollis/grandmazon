@@ -11,12 +11,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super do |resource|
-      if resource.persisted?
-        session[:unconfirmed_account] = resource.id
-        UserMailer.with(user: @user).welcome_email.deliver_now
-      end
-    end
+    super
+    UserMailer.welcome_email(@user).deliver_now
   end
 
   # GET /resource/edit
@@ -47,8 +43,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :first_name, :last_name, :admin])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :first_name, :last_name, :admin, :notes])
   end
+
+  # def user_params
+  #   params.require(:user).permit(:sign_up, :email, :password, :password_confirmation, :first_name, :last_name, :admin)
+  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
