@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "As a visitor" do
+describe "As a visitor", type: :feature do
 	describe "when i visit the root path" do
 		it 'I can see all of the items with enabled merchants' do
 			@user1 = create(:user)

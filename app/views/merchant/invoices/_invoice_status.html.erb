@@ -5,6 +5,9 @@
     <% if @invoice.discounts_applied == false %>
       "No Discounts Applied"
     <% else %>
+    <% if @merchant %>
+      <%= link_to 'Applied Discounts', merchant_invoice_applied_discounts_path(@merchant, @invoice) %>
+    <% end %>
       <% @invoice.discounts_applied.each do |discount| %>
         <%=  discount.name  %>
       <% end %>

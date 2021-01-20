@@ -1,0 +1,17 @@
+<table>
+  <tr>
+    <th colspan="3">Discounts Applied to invoice: <%= @invoice.id%> </th>
+  </tr>
+  <tr>
+    <th> Name </th>
+    <th> Percent off</th>
+    <th> Minimum order QTY</th>
+  <tr>
+  <% @invoice.discounts_applied.each do |discount| %>
+    <tr id="discount-<%= discount.id %>">
+      <td><%= link_to discount.name, merchant_discount_path(discount.merchant, discount) %></td>
+      <td><%= discount.percentage %></td>
+      <td><%= discount.minimum %></td>
+    </tr>
+  <% end %>
+</table>

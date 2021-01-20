@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'As an Admin' do
+describe 'As an Admin', type: :feature do
   describe 'When i visit the admin dashboard' do
     before :each do
 	    @admin = create(:user)

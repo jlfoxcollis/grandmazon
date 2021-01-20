@@ -29,7 +29,9 @@ Rails.application.routes.draw do
       resources :discounts
       resources :items
       resources :items_status, controller: "merchant_items_status", only: [:update]
-      resources :invoices
+      resources :invoices do
+        resources :applied_discounts, only: [:index]
+      end
       resources :invoice_items, only: [:update]
       resources :dashboard, only: [:index]
     end

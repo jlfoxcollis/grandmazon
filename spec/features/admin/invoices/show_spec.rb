@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'As an admin' do
+describe 'As an admin', type: :feature do
   describe 'When i visit an admin invoice show apge' do
     before :each do
       @admin = create(:user, admin: true)
@@ -91,7 +91,7 @@ describe 'As an admin' do
       select("Completed", :from => "invoice[status]")
 
       click_button "Update Invoice"
-      
+
       within("#status-#{invoice_item2.id}") do
         expect(page).to have_content("#{discount.percentage}")
       end

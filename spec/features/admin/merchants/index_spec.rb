@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin Merchants Index' do
+RSpec.describe 'Admin Merchants Index', type: :feature do
   before :each do
     @admin = create(:user, admin: true)
 

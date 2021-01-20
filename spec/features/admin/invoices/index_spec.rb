@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'As an admin' do
+describe 'As an admin', type: :feature do
   describe 'When i visit the admin invoices index' do
     before :each do
 	    @admin = create(:user)

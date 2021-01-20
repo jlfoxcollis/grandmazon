@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "As a signed in user" do
+describe "As a signed in user", type: :feature do
 	describe "I can" do
 		before :each do
 			@user = create(:user, email: "user@example.com", password: "password", password_confirmation: "password")

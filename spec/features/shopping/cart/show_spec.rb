@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "When a user tries to checkout" do
+RSpec.describe "When a user tries to checkout", type: :feature do
   it "displays a message" do
     @user = create(:user)
     @merchant = create(:merchant, user: @user, status: 1)

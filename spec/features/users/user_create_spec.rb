@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "As a visitor" do
+describe "As a visitor", type: :feature do
 	describe "I can" do
 		it 'Create an account' do
 			visit new_user_registration_path
