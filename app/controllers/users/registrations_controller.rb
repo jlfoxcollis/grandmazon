@@ -16,7 +16,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         session[:unconfirmed_account] = resource.id
       end
     end
-    UserMailer.with(user: @user).welcome_email.deliver_now
   end
 
   # GET /resource/edit
