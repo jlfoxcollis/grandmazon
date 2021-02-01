@@ -1,1 +1,4 @@
 language: ruby
+install:
+  - bundle install --path vendor/bundle
+  - npm install
